@@ -1,0 +1,36 @@
+---
+import type { SkillsContent } from "../data/portfolio";
+
+type Props = {
+  skills: SkillsContent;
+};
+
+const { skills } = Astro.props;
+---
+
+<section class="section-grid reveal" id="skills">
+  <div class="section-heading">
+    <p class="eyebrow">Skills</p>
+    <h2>Technical strengths grouped into easy-to-maintain content blocks.</h2>
+  </div>
+
+  <div class="skill-layout">
+    <article class="glass-panel spotlight-panel skill-panel">
+      <h3>Software stack</h3>
+      <div class="chip-row">
+        {skills.stack.map((skill) => (
+          <span class="chip">{skill}</span>
+        ))}
+      </div>
+    </article>
+
+    <article class="glass-panel spotlight-panel skill-panel">
+      <h3>Hardware and systems</h3>
+      <div class="chip-row">
+        {skills.hardware.map((skill) => (
+          <span class="chip chip-soft">{skill}</span>
+        ))}
+      </div>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+---
+import type { LinkItem } from "../data/portfolio";
+
+type Props = {
+  interests: string[];
+  socialLinks: LinkItem[];
+};
+
+const { interests, socialLinks } = Astro.props;
+---
+
+<section class="section-grid reveal" id="contact">
+  <div class="section-heading">
+    <p class="eyebrow">Beyond Work</p>
+    <h2>Room for personality, contact, and whatever you want to add next.</h2>
+  </div>
+
+  <div class="contact-layout">
+    <article class="glass-panel spotlight-panel contact-card">
+      <h3>Interests</h3>
+      <div class="chip-row">
+        {interests.map((interest) => (
+          <span class="chip chip-soft">{interest}</span>
+        ))}
+      </div>
+    </article>
+
+    <article class="glass-panel spotlight-panel contact-card">
+      <h3>Connect</h3>
+      <p>
+        This section is a good place to add a resume link, a project inquiry form,
+        testimonials, or a short note about what kind of roles you want next.
+      </p>
+      <div class="link-list">
+        {socialLinks.map((link) => (
+          <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </article>
+  </div>
+</section>

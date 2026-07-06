@@ -1,1 +1,0 @@
-3/10/2021 - ISSUE - Bug Found - URL only works when "www." is including in the link.

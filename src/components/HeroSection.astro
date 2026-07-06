@@ -1,0 +1,47 @@
+---
+import type { SiteContent, Stat } from "../data/portfolio";
+
+type Props = {
+  site: SiteContent;
+  heroStats: Stat[];
+  profileImage: string;
+};
+
+const { site, heroStats, profileImage } = Astro.props;
+---
+
+<section class="hero reveal" id="hero">
+  <div class="hero__copy glass-panel spotlight-panel">
+    <p class="eyebrow">Private Portfolio</p>
+    <h1>{site.title}</h1>
+    <p class="hero__lede">{site.intro}</p>
+
+    <div class="hero__actions">
+      <a class="primary-button" href="#projects">See featured work</a>
+      <a class="secondary-button" href={`mailto:${site.email}`}>Start a conversation</a>
+    </div>
+
+    <div class="hero__stats">
+      {heroStats.map((stat) => (
+        <div class="stat-card">
+          <strong>{stat.value}</strong>
+          <span>{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <aside class="hero__visual reveal">
+    <div class="portrait-card glass-panel spotlight-panel">
+      <div class="portrait-card__header">
+        <span class="status-pill">Authenticated</span>
+        <span class="status-pill muted">{site.location}</span>
+      </div>
+      <img src={profileImage} alt={`${site.name} portrait`} class="portrait-card__image" />
+      <div class="portrait-card__body">
+        <h2>{site.name}</h2>
+        <p>{site.availability}</p>
+      </div>
+    </div>
+  </aside>
+</section>

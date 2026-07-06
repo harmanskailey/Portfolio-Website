@@ -1,0 +1,161 @@
+---
+export const prerender = false;
+
+const error = Astro.url.searchParams.get("error");
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const appRoot = basePath || "/";
+const redirectTo = Astro.url.searchParams.get("redirect") || appRoot;
+const loginAction = `${basePath}/api/login` || "/api/login";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio Access</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="gate">
+      <section class="card">
+        <p class="eyebrow">Private Portfolio</p>
+        <h1>Authentication required</h1>
+        <p class="copy">
+          Enter the site passcode to continue. You will stay signed in while browsing,
+          and the session will reset after the browser is fully closed.
+        </p>
+
+        <form method="POST" action={loginAction} class="form">
+          <input type="hidden" name="redirect" value={redirectTo} />
+          <label for="passcode">Passcode</label>
+          <input
+            id="passcode"
+            name="passcode"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+          {error === "invalid" && <p class="error">That passcode was not accepted.</p>}
+          <button type="submit">Enter site</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: dark;
+    --panel: rgba(10, 27, 46, 0.82);
+    --panel-border: rgba(158, 197, 255, 0.18);
+    --text: #edf7ff;
+    --muted: #a8c2df;
+    --accent: #64b2ff;
+    --accent-strong: #2f73c4;
+    --error: #ffd0df;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Manrope", sans-serif;
+    background:
+      radial-gradient(circle at top, rgba(100, 178, 255, 0.24), transparent 28%),
+      radial-gradient(circle at bottom left, rgba(157, 210, 255, 0.18), transparent 30%),
+      linear-gradient(145deg, #030c17 0%, #06111f 46%, #081829 100%);
+    color: var(--text);
+  }
+
+  .gate {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+  }
+
+  .card {
+    width: min(100%, 28rem);
+    padding: 2rem;
+    border: 1px solid var(--panel-border);
+    border-radius: 1.5rem;
+    background: var(--panel);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 24px 80px rgba(1, 11, 21, 0.45);
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  .copy {
+    margin: 1rem 0 1.5rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .form {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  label {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  input {
+    width: 100%;
+    border: 1px solid rgba(158, 197, 255, 0.18);
+    border-radius: 0.85rem;
+    background: rgba(6, 19, 32, 0.72);
+    color: var(--text);
+    padding: 0.95rem 1rem;
+    font: inherit;
+  }
+
+  input:focus {
+    outline: 2px solid rgba(100, 178, 255, 0.45);
+    outline-offset: 2px;
+  }
+
+  button {
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #03111d;
+    padding: 0.95rem 1.2rem;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .error {
+    margin: 0;
+    color: var(--error);
+    font-size: 0.95rem;
+  }
+</style>

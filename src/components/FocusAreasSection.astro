@@ -1,0 +1,25 @@
+---
+import type { FocusArea } from "../data/portfolio";
+
+type Props = {
+  items: FocusArea[];
+};
+
+const { items } = Astro.props;
+---
+
+<section class="section-grid reveal" id="about">
+  <div class="section-heading">
+    <p class="eyebrow">About</p>
+    <h2>Designed to be edited, expanded, and kept alive over time.</h2>
+  </div>
+
+  <div class="feature-grid">
+    {items.map((item) => (
+      <article class="feature-card glass-panel spotlight-panel">
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </article>
+    ))}
+  </div>
+</section>

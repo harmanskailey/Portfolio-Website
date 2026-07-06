@@ -1,0 +1,45 @@
+<div class="waterfall-bg" aria-hidden="true" data-weather-shell>
+  <div class="weather-layer weather-layer--glow"></div>
+  <div class="weather-layer weather-layer--fog"></div>
+  <div class="weather-layer weather-layer--ocean"></div>
+  <div class="weather-layer weather-layer--ripples weather-layer--ripples-back"></div>
+  <div class="weather-layer weather-layer--ripples weather-layer--ripples-front"></div>
+  <div class="shore-scene">
+    <div class="wave-band wave-band--far"></div>
+    <div class="wave-band wave-band--mid"></div>
+    <div class="wave-band wave-band--near"></div>
+    <div class="wave-band wave-band--foam"></div>
+    <div class="beach-shape"></div>
+    <div class="beach-highlight"></div>
+  </div>
+  <div class="weather-layer weather-layer--frost"></div>
+</div>
+
+<script is:inline>
+  const weatherShell = document.querySelector("[data-weather-shell]");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (weatherShell instanceof HTMLElement && !reducedMotion.matches) {
+    const setPointer = (event) => {
+      const x = event.clientX / window.innerWidth;
+      const y = event.clientY / window.innerHeight;
+
+      weatherShell.style.setProperty("--weather-x", `${50 + (x - 0.5) * 16}%`);
+      weatherShell.style.setProperty("--weather-y", `${28 + (y - 0.5) * 12}%`);
+      weatherShell.style.setProperty("--weather-shift-x", `${(x - 0.5) * 18}px`);
+      weatherShell.style.setProperty("--weather-shift-y", `${(y - 0.5) * 12}px`);
+    };
+
+    const resetPointer = () => {
+      weatherShell.style.setProperty("--weather-x", "50%");
+      weatherShell.style.setProperty("--weather-y", "28%");
+      weatherShell.style.setProperty("--weather-shift-x", "0px");
+      weatherShell.style.setProperty("--weather-shift-y", "0px");
+    };
+
+    resetPointer();
+    window.addEventListener("pointermove", setPointer, { passive: true });
+    window.addEventListener("pointerleave", resetPointer);
+    window.addEventListener("blur", resetPointer);
+  }
+</script>
