@@ -20,6 +20,7 @@ const logoutAction = `${basePath}/api/logout` || "/api/logout";
 const pageTitle = `${showcase.title} | ${site.name}`;
 const pageDescription = showcase.summary;
 const previewImage = new URL(profilePic.src, Astro.url).toString();
+const faviconVersion = "hk-2";
 ---
 
 <!DOCTYPE html>
@@ -40,7 +41,9 @@ const previewImage = new URL(profilePic.src, Astro.url).toString();
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={previewImage} />
     <title>{pageTitle}</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`/favicon.svg?v=${faviconVersion}`} />
+    <link rel="shortcut icon" href={`/favicon.ico?v=${faviconVersion}`} />
+    <link rel="apple-touch-icon" href={`/apple-touch-icon.png?v=${faviconVersion}`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
