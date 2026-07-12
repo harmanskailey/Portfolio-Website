@@ -8,7 +8,11 @@
   <rect width="128" height="128" rx="28" fill="#0b1320" />
   <rect x="8" y="8" width="112" height="112" rx="22" fill="url(#bg)" />
   <path
-    d="M37 35h13v21h28V35h13v58H78V68H50v25H37V35Zm18 0h13v58H55V35Z"
-    fill="#0b1320"
+    d="M34 35V93M52 35V93M34 64H52M74 35V93M74 64L97 35M74 64L97 93"
+    fill="none"
+    stroke="#0b1320"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="10"
   />
 </svg>
