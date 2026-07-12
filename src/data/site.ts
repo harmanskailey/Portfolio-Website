@@ -1,20 +1,33 @@
-import type { LinkItem, SiteContent, Stat } from "./types";
+import type { LinkItem, SiteContent } from "./types";
 
 export const site: SiteContent = {
   name: "Harman Kailey",
-  title: "Full-Time Software Engineer, Part-Time Masters student studying Applied Statistics at RIT.",
+  title: "I've Been Learning To Ask The Right Questions. Results Driven Software Engineer. Applied Statistician.",
   intro:
     "I build across web development, applied technical projects, and a few long-term interests outside of work. This site is meant to stay simple now and grow cleanly as I add more real project detail.",
   email: "harmanskailey@gmail.com",
   location: "New Jersey, USA",
   availability: "Open to engineering roles, freelance builds, and creative technical collaborations.",
+  portraitSubtitle: "Ultra Full-Time Dog Dad",
+  portraitStack: [
+    {
+      eyebrow: "Based In",
+      text: "New Jersey, USA",
+    },
+    {
+      eyebrow: "Currently",
+      text: "Part-time Masters student studying Applied Statistics at RIT.",
+    },
+    {
+      eyebrow: "Open To",
+      text: "Engineering roles, freelance builds, and creative technical collaborations.",
+    },
+    {
+      eyebrow: "Education",
+      text: "B.S. Electrical and Computer Engineering at Rutgers University '2021",
+    },
+  ],
 };
-
-export const heroStats: Stat[] = [
-  { value: "6+", label: "Technical disciplines explored" },
-  { value: "3", label: "Featured project lanes" },
-  { value: "1", label: "Private portfolio experience" },
-];
 
 export const socialLinks: LinkItem[] = [
   { label: "GitHub", href: "https://github.com/harmanskailey" },

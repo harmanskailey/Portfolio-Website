@@ -6,8 +6,8 @@ import HeroSection from "../components/HeroSection.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import WaterfallBackground from "../components/WaterfallBackground.astro";
 import profilePic from "../assets/img/profile.jpeg";
-import { heroContent, homeSections } from "../config/homeSections";
-import { heroStats, site } from "../data/portfolio";
+import { heroContent, heroHighlights, homeSections } from "../config/homeSections";
+import { site } from "../data/portfolio";
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 const logoutAction = `${basePath}/api/logout` || "/api/logout";
@@ -65,8 +65,8 @@ const faviconVersion = "hk-2";
       <main class="page-content">
         <HeroSection
           site={site}
-          heroStats={heroStats}
           profileImage={profilePic.src}
+          heroHighlights={heroHighlights}
           eyebrow={heroContent.eyebrow}
           primaryCta={heroContent.primaryCta}
           secondaryCta={heroContent.secondaryCta}

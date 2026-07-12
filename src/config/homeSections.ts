@@ -28,6 +28,27 @@ export const heroContent = {
   statusLabel: "Authenticated",
 };
 
+export const heroHighlights = [
+  {
+    eyebrow: "About",
+    title: focusAreas[0]?.title ?? "How I work",
+    text: focusAreas[0]?.text ?? "",
+    href: "#about",
+  },
+  {
+    eyebrow: "Projects",
+    title: projects[0]?.title ?? "Selected work",
+    text: projects[0]?.description ?? "",
+    href: "#projects",
+  },
+  {
+    eyebrow: "Showcase",
+    title: showcases[0]?.title ?? "More to explore",
+    text: showcases[0]?.summary ?? "",
+    href: "#showcase",
+  },
+] as const;
+
 export const homeSections = [
   {
     id: "about",

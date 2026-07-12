@@ -26,6 +26,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# local image backups
+public/images/cooking/_originals_backup/
+
 # macOS-specific files
 .DS_Store
 Thumbs.db

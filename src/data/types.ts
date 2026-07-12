@@ -5,15 +5,22 @@ export type SiteContent = {
   email: string;
   location: string;
   availability: string;
-};
-
-export type Stat = {
-  value: string;
-  label: string;
+  portraitSubtitle?: string;
+  portraitStack?: {
+    eyebrow: string;
+    text: string;
+  }[];
 };
 
 export type LinkItem = {
   label: string;
+  href: string;
+};
+
+export type HeroHighlight = {
+  eyebrow: string;
+  title: string;
+  text: string;
   href: string;
 };
 
