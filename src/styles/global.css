@@ -150,12 +150,20 @@ select {
   letter-spacing: 0.02em;
 }
 
-.brand-mark__dot {
-  width: 0.85rem;
-  height: 0.85rem;
-  border-radius: 999px;
+.brand-mark__monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  padding: 0 0.45rem;
+  border-radius: 0.75rem;
   background: linear-gradient(135deg, var(--hydrangea-300), var(--hydrangea-700));
-  box-shadow: 0 0 24px rgba(100, 178, 255, 0.7);
+  box-shadow: 0 10px 24px rgba(70, 108, 168, 0.35);
+  color: #0b1320;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 .page-content {
