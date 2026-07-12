@@ -12,7 +12,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^11.0.2",
-    "astro": "^7.0.6"
+    "astro": "^7.0.6",
+    "curl": "^0.1.4"
+  },
+  "devDependencies": {
+    "@astrojs/vercel": "^11.0.2"
   }
 }

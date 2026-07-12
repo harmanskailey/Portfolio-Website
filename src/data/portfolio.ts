@@ -45,11 +45,21 @@ export type ProjectItem = {
   tags: string[];
 };
 
+export type ShowcaseItem = {
+  slug: string;
+  title: string;
+  category: string;
+  summary: string;
+  tags: string[];
+  bullets: string[];
+  links?: LinkItem[];
+};
+
 export const site: SiteContent = {
   name: "Harman Kailey",
-  title: "Software Engineer building thoughtful systems with a sharp visual edge.",
+  title: "Software engineer focused on full-stack products, systems thinking, and practical builds.",
   intro:
-    "I design and ship digital experiences across full-stack development, embedded systems, and exploratory product ideas. This version of the site is intentionally modular so you can swap content without untangling layout code.",
+    "I build across web development, applied technical projects, and a few long-term interests outside of work. This site is meant to stay simple now and grow cleanly as I add more real project detail.",
   email: "harmanskailey@gmail.com",
   location: "New Jersey, USA",
   availability: "Open to engineering roles, freelance builds, and creative technical collaborations.",
@@ -69,16 +79,16 @@ export const socialLinks: LinkItem[] = [
 
 export const focusAreas: FocusArea[] = [
   {
-    title: "Full-stack product work",
-    text: "From backend logic to polished frontends, I like building systems that feel cohesive instead of stitched together.",
+    title: "Full-stack development",
+    text: "I like building products end to end, from data and backend logic to frontend experiences that feel clear and intentional.",
   },
   {
-    title: "Embedded and hardware fluency",
-    text: "My engineering background lets me move comfortably between software interfaces and physical systems.",
+    title: "Embedded systems",
+    text: "My background includes hardware-oriented work, so I am comfortable moving between software, devices, and system constraints.",
   },
   {
-    title: "Experiment-driven learning",
-    text: "I learn fastest by shipping small, interesting prototypes and iterating until the idea becomes real.",
+    title: "Applied problem solving",
+    text: "I learn best by building, testing, and refining ideas until they become useful and concrete.",
   },
 ];
 
@@ -141,6 +151,61 @@ export const projects: ProjectItem[] = [
     description:
       "A smart lock concept blending 3D design, motors, Bluetooth setup, and NFC-based access workflows.",
     tags: ["IoT", "Android", "NFC", "Mechanical design"],
+  },
+];
+
+export const showcases: ShowcaseItem[] = [
+  {
+    slug: "dog",
+    title: "Cooper",
+    category: "Personal side",
+    summary:
+      "A simple page for Cooper with room for photos, short updates, and links out to social posts if I decide to keep them there.",
+    tags: ["Photos", "Short updates", "Instagram links"],
+    bullets: [
+      "A place to share a few photos and quick notes without cluttering the main portfolio.",
+      "Can link out to a public Instagram account instead of hosting large video files directly.",
+      "Easy to expand later into a gallery or small timeline.",
+    ],
+  },
+  {
+    slug: "bouldering",
+    title: "Bouldering Experience",
+    category: "Athletic practice",
+    summary:
+      "A dedicated route for climbing progress, videos, favorite problems, and the way bouldering overlaps with technical problem solving.",
+    tags: ["Progress", "Videos", "Problem solving"],
+    bullets: [
+      "Good place for climbing clips without forcing them into the main homepage.",
+      "Can grow into a log of favorite sends, gyms, or training notes.",
+      "Works well with embedded video links if I want to avoid hosting files myself.",
+    ],
+  },
+  {
+    slug: "applied-stats",
+    title: "Applied Stats Projects",
+    category: "Analytical work",
+    summary:
+      "A page for projects where data analysis, statistical reasoning, or modeling matter as much as the code.",
+    tags: ["Analysis", "Modeling", "Case studies"],
+    bullets: [
+      "Keeps data-oriented work separate from general software projects.",
+      "Can expand into project cards with datasets, methods, and results.",
+      "Fits notebooks, dashboards, or short write-ups once those are ready.",
+    ],
+  },
+  {
+    slug: "cooking",
+    title: "Cooking Skills",
+    category: "Creative craft",
+    summary:
+      "A small section for dishes, techniques, and food I like making, without forcing it into a fake project format.",
+    tags: ["Dishes", "Techniques", "Photos"],
+    bullets: [
+      "Useful for a few photos, favorite meals, or techniques I keep coming back to.",
+      "Can stay lightweight now and turn into a recipe or food journal later.",
+      "Adds personality without needing a complicated structure.",
+    ],
   },
 ];
 

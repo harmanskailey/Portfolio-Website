@@ -7,6 +7,7 @@ import ExperienceSection from "../components/ExperienceSection.astro";
 import FocusAreasSection from "../components/FocusAreasSection.astro";
 import HeroSection from "../components/HeroSection.astro";
 import ProjectsSection from "../components/ProjectsSection.astro";
+import ShowcaseSection from "../components/ShowcaseSection.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SkillsSection from "../components/SkillsSection.astro";
 import WaterfallBackground from "../components/WaterfallBackground.astro";
@@ -17,6 +18,7 @@ import {
   heroStats,
   interests,
   projects,
+  showcases,
   site,
   skills,
   socialLinks,
@@ -48,10 +50,8 @@ const logoutAction = `${basePath}/api/logout` || "/api/logout";
   <body>
     <div class="page-shell" data-shell>
       <WaterfallBackground />
-      <div class="ambient ambient-one"></div>
-      <div class="ambient ambient-two"></div>
 
-      <SiteHeader name={site.name} logoutAction={logoutAction} />
+      <SiteHeader name={site.name} logoutAction={logoutAction} homePath={`${basePath}/` || "/"} />
 
       <main class="page-content">
         <HeroSection site={site} heroStats={heroStats} profileImage={profilePic.src} />
@@ -59,6 +59,7 @@ const logoutAction = `${basePath}/api/logout` || "/api/logout";
         <ExperienceSection items={experience} />
         <SkillsSection skills={skills} />
         <ProjectsSection projects={projects} />
+        <ShowcaseSection items={showcases} />
         <ContactSection interests={interests} socialLinks={socialLinks} />
       </main>
     </div>

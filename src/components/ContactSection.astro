@@ -11,8 +11,8 @@ const { interests, socialLinks } = Astro.props;
 
 <section class="section-grid reveal" id="contact">
   <div class="section-heading">
-    <p class="eyebrow">Beyond Work</p>
-    <h2>Room for personality, contact, and whatever you want to add next.</h2>
+    <p class="eyebrow">Contact</p>
+    <h2>Interests, links, and the easiest ways to reach me.</h2>
   </div>
 
   <div class="contact-layout">
@@ -27,10 +27,7 @@ const { interests, socialLinks } = Astro.props;
 
     <article class="glass-panel spotlight-panel contact-card">
       <h3>Connect</h3>
-      <p>
-        This section is a good place to add a resume link, a project inquiry form,
-        testimonials, or a short note about what kind of roles you want next.
-      </p>
+      <p>I am easiest to reach by email or LinkedIn, and I keep code samples on GitHub.</p>
       <div class="link-list">
         {socialLinks.map((link) => (
           <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">

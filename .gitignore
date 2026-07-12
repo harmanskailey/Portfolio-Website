@@ -1,14 +1,23 @@
 # build output
 dist/
+.amplify-hosting/
+.firebase/
 
 # generated types
 .astro/
+.vercel/
 
 # dependencies
 node_modules/
 
+# local tooling state
+.agents/
+.firebase-config/
+skills-lock.json
+
 # logs
 npm-debug.log*
+firebase-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
@@ -19,6 +28,7 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+Thumbs.db
 
 # jetbrains setting folder
 .idea/

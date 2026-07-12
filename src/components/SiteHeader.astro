@@ -2,22 +2,24 @@
 type Props = {
   name: string;
   logoutAction: string;
+  homePath?: string;
 };
 
-const { name, logoutAction } = Astro.props;
+const { name, logoutAction, homePath = "/" } = Astro.props;
 ---
 
 <header class="topbar">
-  <a href="#hero" class="brand-mark">
+  <a href={`${homePath}#hero`} class="brand-mark">
     <span class="brand-mark__dot"></span>
     <span>{name}</span>
   </a>
 
   <nav class="topbar__nav" aria-label="Section navigation">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+    <a href={`${homePath}#about`}>About</a>
+    <a href={`${homePath}#experience`}>Experience</a>
+    <a href={`${homePath}#projects`}>Projects</a>
+    <a href={`${homePath}#showcase`}>Showcase</a>
+    <a href={`${homePath}#contact`}>Contact</a>
   </nav>
 
   <form method="POST" action={logoutAction}>

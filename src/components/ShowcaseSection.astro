@@ -1,0 +1,32 @@
+---
+import type { ShowcaseItem } from "../data/portfolio";
+
+type Props = {
+  items: ShowcaseItem[];
+};
+
+const { items } = Astro.props;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<section class="section-grid reveal" id="showcase">
+  <div class="section-heading">
+    <p class="eyebrow">More</p>
+    <h2>Additional pages for interests and work I want to build out over time.</h2>
+  </div>
+
+  <div class="project-grid">
+    {items.map((item) => (
+      <a class="project-card glass-panel spotlight-panel showcase-link" href={`${basePath}/showcase/${item.slug}` || `/showcase/${item.slug}`}>
+        <p class="project-card__category">{item.category}</p>
+        <h3>{item.title}</h3>
+        <p>{item.summary}</p>
+        <div class="chip-row">
+          {item.tags.map((tag) => (
+            <span class="chip chip-soft">{tag}</span>
+          ))}
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

@@ -1,46 +1,39 @@
-# Astro Starter Kit: Basics
+# Portfolio Website
+
+Astro portfolio site with cookie-based login, middleware-protected routes, and Vercel deployment support.
+
+## Local commands
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
+npm run build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Deployment target
 
-## 🚀 Project Structure
+This project uses server-side rendering because it includes:
 
-Inside of your Astro project, you'll see the following folders and files:
+- `src/middleware.ts`
+- `src/pages/api/login.ts`
+- `src/pages/api/logout.ts`
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+It is configured for Vercel with the official Astro adapter in `astro.config.mjs`.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Deploy to Vercel
 
-## 🧞 Commands
+The simplest path is through the Vercel dashboard:
 
-All commands are run from the root of the project, from a terminal:
+1. Push this repository to GitHub.
+2. Import the repo into Vercel.
+3. Keep the detected build command as `npm run build`.
+4. Keep the output setting managed by Astro/Vercel.
+5. Deploy.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Vercel should detect the Astro app automatically.
 
-## 👀 Want to learn more?
+## Notes
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- The previous Firebase Hosting setup files were removed because Firebase SSR would require the Blaze plan for this app.
+- No Firebase-specific configuration is required for the current deployment target.
