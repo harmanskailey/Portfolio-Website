@@ -7,16 +7,16 @@ import type {
 
 export const focusAreas: FocusArea[] = [
   {
-    title: "Full-stack development",
-    text: "I like building products end to end, from data and backend logic to frontend experiences that feel clear and intentional.",
+    title: "Text",
+    text: "Text.",
   },
   {
-    title: "Embedded systems",
-    text: "My background includes hardware-oriented work, so I am comfortable moving between software, devices, and system constraints.",
+    title: "Text",
+    text: "Text.",
   },
   {
-    title: "Applied problem solving",
-    text: "I learn best by building, testing, and refining ideas until they become useful and concrete.",
+    title: "Text",
+    text: "Text.",
   },
 ];
 
