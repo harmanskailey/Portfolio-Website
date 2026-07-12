@@ -1,11 +1,22 @@
 ---
+type NavItem = {
+  id: string;
+  label: string;
+};
+
 type Props = {
   name: string;
   logoutAction: string;
   homePath?: string;
+  navItems?: NavItem[];
 };
 
-const { name, logoutAction, homePath = "/" } = Astro.props;
+const {
+  name,
+  logoutAction,
+  homePath = "/",
+  navItems = [],
+} = Astro.props;
 ---
 
 <header class="topbar">
@@ -15,11 +26,9 @@ const { name, logoutAction, homePath = "/" } = Astro.props;
   </a>
 
   <nav class="topbar__nav" aria-label="Section navigation">
-    <a href={`${homePath}#about`}>About</a>
-    <a href={`${homePath}#experience`}>Experience</a>
-    <a href={`${homePath}#projects`}>Projects</a>
-    <a href={`${homePath}#showcase`}>Showcase</a>
-    <a href={`${homePath}#contact`}>Contact</a>
+    {navItems.map((item) => (
+      <a href={`${homePath}#${item.id}`}>{item.label}</a>
+    ))}
   </nav>
 
   <form method="POST" action={logoutAction}>

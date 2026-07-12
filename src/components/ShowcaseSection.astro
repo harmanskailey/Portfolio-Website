@@ -1,20 +1,24 @@
 ---
 import type { ShowcaseItem } from "../data/portfolio";
+import SectionShell from "./SectionShell.astro";
 
 type Props = {
+  id?: string;
+  eyebrow?: string;
+  heading?: string;
   items: ShowcaseItem[];
 };
 
-const { items } = Astro.props;
+const {
+  id = "showcase",
+  eyebrow = "More",
+  heading = "Additional pages for interests and work I want to build out over time.",
+  items,
+} = Astro.props;
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
-<section class="section-grid reveal" id="showcase">
-  <div class="section-heading">
-    <p class="eyebrow">More</p>
-    <h2>Additional pages for interests and work I want to build out over time.</h2>
-  </div>
-
+<SectionShell id={id} eyebrow={eyebrow} heading={heading}>
   <div class="project-grid">
     {items.map((item) => (
       <a class="project-card glass-panel spotlight-panel showcase-link" href={`${basePath}/showcase/${item.slug}` || `/showcase/${item.slug}`}>
@@ -29,4 +33,4 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
       </a>
     ))}
   </div>
-</section>
+</SectionShell>

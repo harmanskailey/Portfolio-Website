@@ -2,27 +2,12 @@
 export const prerender = false;
 
 import "../styles/global.css";
-import ContactSection from "../components/ContactSection.astro";
-import ExperienceSection from "../components/ExperienceSection.astro";
-import FocusAreasSection from "../components/FocusAreasSection.astro";
 import HeroSection from "../components/HeroSection.astro";
-import ProjectsSection from "../components/ProjectsSection.astro";
-import ShowcaseSection from "../components/ShowcaseSection.astro";
 import SiteHeader from "../components/SiteHeader.astro";
-import SkillsSection from "../components/SkillsSection.astro";
 import WaterfallBackground from "../components/WaterfallBackground.astro";
 import profilePic from "../assets/img/profile.jpeg";
-import {
-  experience,
-  focusAreas,
-  heroStats,
-  interests,
-  projects,
-  showcases,
-  site,
-  skills,
-  socialLinks,
-} from "../data/portfolio";
+import { heroContent, homeSections } from "../config/homeSections";
+import { heroStats, site } from "../data/portfolio";
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 const logoutAction = `${basePath}/api/logout` || "/api/logout";
@@ -70,16 +55,26 @@ const faviconVersion = "hk-2";
     <div class="page-shell" data-shell>
       <WaterfallBackground />
 
-      <SiteHeader name={site.name} logoutAction={logoutAction} homePath={`${basePath}/` || "/"} />
+      <SiteHeader
+        name={site.name}
+        logoutAction={logoutAction}
+        homePath={`${basePath}/` || "/"}
+        navItems={homeSections.map(({ id, label }) => ({ id, label }))}
+      />
 
       <main class="page-content">
-        <HeroSection site={site} heroStats={heroStats} profileImage={profilePic.src} />
-        <FocusAreasSection items={focusAreas} />
-        <ExperienceSection items={experience} />
-        <SkillsSection skills={skills} />
-        <ProjectsSection projects={projects} />
-        <ShowcaseSection items={showcases} />
-        <ContactSection interests={interests} socialLinks={socialLinks} />
+        <HeroSection
+          site={site}
+          heroStats={heroStats}
+          profileImage={profilePic.src}
+          eyebrow={heroContent.eyebrow}
+          primaryCta={heroContent.primaryCta}
+          secondaryCta={heroContent.secondaryCta}
+          statusLabel={heroContent.statusLabel}
+        />
+        {homeSections.map(({ id, component: Section, props }) => (
+          <Section id={id} {...props} />
+        ))}
       </main>
     </div>
 

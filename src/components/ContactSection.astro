@@ -1,20 +1,25 @@
 ---
 import type { LinkItem } from "../data/portfolio";
+import SectionShell from "./SectionShell.astro";
 
 type Props = {
+  id?: string;
+  eyebrow?: string;
+  heading?: string;
   interests: string[];
   socialLinks: LinkItem[];
 };
 
-const { interests, socialLinks } = Astro.props;
+const {
+  id = "contact",
+  eyebrow = "Contact",
+  heading = "Interests, links, and the easiest ways to reach me.",
+  interests,
+  socialLinks,
+} = Astro.props;
 ---
 
-<section class="section-grid reveal" id="contact">
-  <div class="section-heading">
-    <p class="eyebrow">Contact</p>
-    <h2>Interests, links, and the easiest ways to reach me.</h2>
-  </div>
-
+<SectionShell id={id} eyebrow={eyebrow} heading={heading}>
   <div class="contact-layout">
     <article class="glass-panel spotlight-panel contact-card">
       <h3>Interests</h3>
@@ -37,4 +42,4 @@ const { interests, socialLinks } = Astro.props;
       </div>
     </article>
   </div>
-</section>
+</SectionShell>

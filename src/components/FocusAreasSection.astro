@@ -1,19 +1,23 @@
 ---
 import type { FocusArea } from "../data/portfolio";
+import SectionShell from "./SectionShell.astro";
 
 type Props = {
+  id?: string;
+  eyebrow?: string;
+  heading?: string;
   items: FocusArea[];
 };
 
-const { items } = Astro.props;
+const {
+  id = "about",
+  eyebrow = "About",
+  heading = "What I spend most of my time building and learning.",
+  items,
+} = Astro.props;
 ---
 
-<section class="section-grid reveal" id="about">
-  <div class="section-heading">
-    <p class="eyebrow">About</p>
-    <h2>What I spend most of my time building and learning.</h2>
-  </div>
-
+<SectionShell id={id} eyebrow={eyebrow} heading={heading}>
   <div class="feature-grid">
     {items.map((item) => (
       <article class="feature-card glass-panel spotlight-panel">
@@ -22,4 +26,4 @@ const { items } = Astro.props;
       </article>
     ))}
   </div>
-</section>
+</SectionShell>

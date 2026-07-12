@@ -1,0 +1,60 @@
+---
+type Props = {
+  text: string;
+  as?: "span" | "div" | "p";
+  className?: string;
+};
+
+const {
+  text,
+  as = "span",
+  className,
+} = Astro.props;
+
+const Tag = as;
+---
+
+<Tag class:list={["fire-text", className]}>{text}</Tag>
+
+<style>
+  .fire-text {
+    display: inline-block;
+    color: #ffd7b0;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    animation: burn 1.5s infinite alternate ease-in-out;
+    filter: blur(0.2px) contrast(1.08);
+  }
+
+  .detail-headline__fire {
+    display: inline-flex;
+    align-items: center;
+    color: #ff9a3c;
+    margin-left: 0.18em;
+    vertical-align: baseline;
+  }
+
+  @keyframes burn {
+    0% {
+      text-shadow:
+        0 0 4px #ffdd00,
+        0 0 10px #ff9900,
+        0 0 18px #ff5a1f,
+        0 0 28px rgba(255, 34, 0, 0.7);
+    }
+    100% {
+      text-shadow:
+        0 0 8px #ffea00,
+        0 0 16px #ffaa00,
+        0 0 26px #ff4d00,
+        0 0 38px rgba(255, 17, 0, 0.8);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fire-text {
+      animation: none;
+    }
+  }
+</style>

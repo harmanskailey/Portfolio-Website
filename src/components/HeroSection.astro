@@ -5,20 +5,44 @@ type Props = {
   site: SiteContent;
   heroStats: Stat[];
   profileImage: string;
+  eyebrow?: string;
+  primaryCta?: {
+    href: string;
+    label: string;
+  };
+  secondaryCta?: {
+    href: string;
+    label: string;
+  };
+  statusLabel?: string;
 };
 
-const { site, heroStats, profileImage } = Astro.props;
+const {
+  site,
+  heroStats,
+  profileImage,
+  eyebrow = "Portfolio",
+  primaryCta = {
+    href: "#projects",
+    label: "See featured work",
+  },
+  secondaryCta = {
+    href: `mailto:${site.email}`,
+    label: "Start a conversation",
+  },
+  statusLabel = "Authenticated",
+} = Astro.props;
 ---
 
 <section class="hero reveal" id="hero">
   <div class="hero__copy glass-panel spotlight-panel">
-    <p class="eyebrow">Portfolio</p>
+    <p class="eyebrow">{eyebrow}</p>
     <h1>{site.title}</h1>
     <p class="hero__lede">{site.intro}</p>
 
     <div class="hero__actions">
-      <a class="primary-button" href="#projects">See featured work</a>
-      <a class="secondary-button" href={`mailto:${site.email}`}>Start a conversation</a>
+      <a class="primary-button" href={primaryCta.href}>{primaryCta.label}</a>
+      <a class="secondary-button" href={secondaryCta.href}>{secondaryCta.label}</a>
     </div>
 
     <div class="hero__stats">
@@ -34,7 +58,7 @@ const { site, heroStats, profileImage } = Astro.props;
   <aside class="hero__visual reveal">
     <div class="portrait-card glass-panel spotlight-panel">
       <div class="portrait-card__header">
-        <span class="status-pill">Authenticated</span>
+        <span class="status-pill">{statusLabel}</span>
         <span class="status-pill muted">{site.location}</span>
       </div>
       <img src={profileImage} alt={`${site.name} portrait`} class="portrait-card__image" />

@@ -1,19 +1,23 @@
 ---
 import type { ProjectItem } from "../data/portfolio";
+import SectionShell from "./SectionShell.astro";
 
 type Props = {
+  id?: string;
+  eyebrow?: string;
+  heading?: string;
   projects: ProjectItem[];
 };
 
-const { projects } = Astro.props;
+const {
+  id = "projects",
+  eyebrow = "Projects",
+  heading = "Selected projects across software, hardware, and applied experimentation.",
+  projects,
+} = Astro.props;
 ---
 
-<section class="section-grid reveal" id="projects">
-  <div class="section-heading">
-    <p class="eyebrow">Projects</p>
-    <h2>Selected projects across software, hardware, and applied experimentation.</h2>
-  </div>
-
+<SectionShell id={id} eyebrow={eyebrow} heading={heading}>
   <div class="project-grid">
     {projects.map((project) => (
       <article class="project-card glass-panel spotlight-panel">
@@ -28,4 +32,4 @@ const { projects } = Astro.props;
       </article>
     ))}
   </div>
-</section>
+</SectionShell>
