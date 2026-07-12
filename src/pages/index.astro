@@ -10,7 +10,6 @@ import { heroContent, heroHighlights, homeSections } from "../config/homeSection
 import { site } from "../data/portfolio";
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
-const logoutAction = `${basePath}/api/logout` || "/api/logout";
 const pageTitle = `${site.name} | Software Engineer Portfolio`;
 const pageDescription =
   "Private portfolio for Harman Kailey featuring software engineering work, technical projects, and selected personal interests.";
@@ -57,7 +56,6 @@ const faviconVersion = "hk-2";
 
       <SiteHeader
         name={site.name}
-        logoutAction={logoutAction}
         homePath={`${basePath}/` || "/"}
         navItems={homeSections.map(({ id, label }) => ({ id, label }))}
       />

@@ -6,14 +6,12 @@ type NavItem = {
 
 type Props = {
   name: string;
-  logoutAction: string;
   homePath?: string;
   navItems?: NavItem[];
 };
 
 const {
   name,
-  logoutAction,
   homePath = "/",
   navItems = [],
 } = Astro.props;
@@ -30,8 +28,4 @@ const {
       <a href={`${homePath}#${item.id}`}>{item.label}</a>
     ))}
   </nav>
-
-  <form method="POST" action={logoutAction}>
-    <button type="submit" class="ghost-button">Sign out</button>
-  </form>
 </header>

@@ -124,7 +124,6 @@ const featuredGalleryData = featuredGallerySelections.map(({ image, galleryIndex
 }));
 const initialFeaturedHeroPosition = 0;
 
-const logoutAction = `${basePath}/api/logout` || "/api/logout";
 const pageTitle = `${showcase.title} | ${site.name}`;
 const pageDescription = showcase.summary;
 const previewImage = galleryImages[0]
@@ -168,7 +167,6 @@ const faviconVersion = "hk-2";
 
       <SiteHeader
         name={site.name}
-        logoutAction={logoutAction}
         homePath={homePath}
         navItems={homeSections.map(({ id, label }) => ({ id, label }))}
       />
