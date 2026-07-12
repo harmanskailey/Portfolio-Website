@@ -1,11 +1,18 @@
 ---
 export const prerender = false;
 
+import profilePic from "../assets/img/profile.jpeg";
+import { site } from "../data/portfolio";
+
 const error = Astro.url.searchParams.get("error");
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 const appRoot = basePath || "/";
 const redirectTo = Astro.url.searchParams.get("redirect") || appRoot;
 const loginAction = `${basePath}/api/login` || "/api/login";
+const pageTitle = `${site.name} | Private Portfolio`;
+const pageDescription =
+  "Software engineer portfolio for Harman Kailey with selected work, technical projects, and personal interests.";
+const previewImage = new URL(profilePic.src, Astro.url).toString();
 ---
 
 <!DOCTYPE html>
@@ -13,8 +20,20 @@ const loginAction = `${basePath}/api/login` || "/api/login";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portfolio Access</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="description" content={pageDescription} />
+    <meta name="theme-color" content="#0b1320" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={Astro.url.toString()} />
+    <meta property="og:image" content={previewImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={previewImage} />
+    <title>{pageTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
