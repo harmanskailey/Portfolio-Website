@@ -14,7 +14,6 @@ type Props = {
     href: string;
     label: string;
   };
-  statusLabel?: string;
 };
 
 const {
@@ -23,14 +22,13 @@ const {
   heroHighlights = [],
   eyebrow = "Portfolio",
   primaryCta = {
-    href: "#projects",
-    label: "See featured work",
+    href: "#experience",
+    label: "View work experience",
   },
   secondaryCta = {
     href: `mailto:${site.email}`,
     label: "Start a conversation",
   },
-  statusLabel = "Authenticated",
 } = Astro.props;
 
 const heroTitleParts = site.title
@@ -62,7 +60,7 @@ const formulaFragments = [
 ];
 ---
 
-<section class="hero reveal" id="hero">
+<section class="hero reveal" id="hero" data-scroll-section>
   <div class="hero__copy glass-panel spotlight-panel">
     <p class="eyebrow">{eyebrow}</p>
     <h1 class="hero__title">

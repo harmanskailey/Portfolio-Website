@@ -37,29 +37,29 @@ export type ShowcaseResource = {
   description?: string;
 };
 
-export type FocusArea = {
-  title: string;
-  text: string;
-};
-
 export type ExperienceItem = {
   role: string;
   company: string;
   period: string;
   summary: string;
   bullets: string[];
+  details?: string[];
 };
 
-export type SkillsContent = {
-  stack: string[];
-  hardware: string[];
+export type EducationItem = {
+  degree: string;
+  school: string;
+  period: string;
+  summary: string;
+  details: string[];
 };
 
-export type ProjectItem = {
+export type InterestItem = {
   title: string;
-  category: string;
-  description: string;
+  text: string;
   tags: string[];
+  details?: string[];
+  imageSources?: string[];
 };
 
 export type ShowcaseItem = {

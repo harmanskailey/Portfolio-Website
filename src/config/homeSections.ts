@@ -1,103 +1,80 @@
 import ContactSection from "../components/ContactSection.astro";
+import EducationSection from "../components/EducationSection.astro";
 import ExperienceSection from "../components/ExperienceSection.astro";
-import FocusAreasSection from "../components/FocusAreasSection.astro";
-import ProjectsSection from "../components/ProjectsSection.astro";
-import ShowcaseSection from "../components/ShowcaseSection.astro";
-import SkillsSection from "../components/SkillsSection.astro";
+import InterestsSection from "../components/InterestsSection.astro";
 import {
+  education,
   experience,
-  focusAreas,
-  interests,
-  projects,
-  showcases,
+  personalInterests,
   site,
-  skills,
   socialLinks,
 } from "../data/portfolio";
 
 export const heroContent = {
   eyebrow: "Portfolio",
   primaryCta: {
-    href: "#projects",
-    label: "See featured work",
+    href: "#experience",
+    label: "View work experience",
   },
   secondaryCta: {
-    href: `mailto:${site.email}`,
-    label: "Start a conversation",
+    href: "#contact",
+    label: "Contact me",
   },
-  statusLabel: "Authenticated",
 };
 
 export const heroHighlights = [
   {
-    eyebrow: "About",
-    title: focusAreas[0]?.title ?? "How I work",
-    text: focusAreas[0]?.text ?? "",
-    href: "#about",
+    eyebrow: "01",
+    title: "Work experience",
+    text: experience[0]?.summary ?? "Professional experience and delivery patterns.",
+    href: "#experience",
   },
   {
-    eyebrow: "Projects",
-    title: projects[0]?.title ?? "Selected work",
-    text: projects[0]?.description ?? "",
-    href: "#projects",
+    eyebrow: "02",
+    title: "Education",
+    text: education[0]?.summary ?? "Applied statistics and technical study.",
+    href: "#education",
   },
   {
-    eyebrow: "Showcase",
-    title: showcases[0]?.title ?? "More to explore",
-    text: showcases[0]?.summary ?? "",
-    href: "#showcase",
+    eyebrow: "03",
+    title: "Interests",
+    text: personalInterests[0]?.text ?? "Personal interests and creative technical threads.",
+    href: "#interests",
   },
 ] as const;
 
 export const homeSections = [
   {
-    id: "about",
-    label: "About",
-    component: FocusAreasSection,
-    props: {
-      eyebrow: "About",
-      heading: "What I spend most of my time building and learning.",
-      items: focusAreas,
-    },
-  },
-  {
     id: "experience",
     label: "Experience",
     component: ExperienceSection,
     props: {
+      stageLabel: "01",
       eyebrow: "Experience",
-      heading: "Professional experience and the work patterns behind it.",
+      heading: "Work experience and the patterns behind it.",
       items: experience,
     },
   },
   {
-    id: "skills",
-    label: "Skills",
-    component: SkillsSection,
+    id: "education",
+    label: "Education",
+    component: EducationSection,
     props: {
-      eyebrow: "Skills",
-      heading: "Core tools and systems I work with most often.",
-      skills,
+      stageLabel: "02",
+      eyebrow: "Education",
+      heading: "Study, statistics, and the technical foundation behind the work.",
+      items: education,
     },
   },
   {
-    id: "projects",
-    label: "Projects",
-    component: ProjectsSection,
+    id: "interests",
+    label: "Interests",
+    component: InterestsSection,
     props: {
-      eyebrow: "Projects",
-      heading: "Selected projects across software, hardware, and applied experimentation.",
-      projects,
-    },
-  },
-  {
-    id: "showcase",
-    label: "Showcase",
-    component: ShowcaseSection,
-    props: {
-      eyebrow: "More",
-      heading: "Additional pages for interests and work I want to build out over time.",
-      items: showcases,
+      stageLabel: "03",
+      eyebrow: "Personal",
+      heading: "Personal interests that keep the work curious and grounded.",
+      items: personalInterests,
     },
   },
   {
@@ -105,10 +82,16 @@ export const homeSections = [
     label: "Contact",
     component: ContactSection,
     props: {
+      stageLabel: "04",
       eyebrow: "Contact",
-      heading: "Interests, links, and the easiest ways to reach me.",
-      interests,
+      heading: "Reach out when something here connects.",
+      site,
       socialLinks,
     },
   },
+] as const;
+
+export const navItems = [
+  { id: "hero", label: "Landing" },
+  ...homeSections.map(({ id, label }) => ({ id, label })),
 ] as const;

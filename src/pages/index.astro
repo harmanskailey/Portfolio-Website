@@ -6,13 +6,13 @@ import HeroSection from "../components/HeroSection.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import WaterfallBackground from "../components/WaterfallBackground.astro";
 import profilePic from "../assets/img/profile.jpeg";
-import { heroContent, heroHighlights, homeSections } from "../config/homeSections";
+import { heroContent, heroHighlights, homeSections, navItems } from "../config/homeSections";
 import { site } from "../data/portfolio";
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 const pageTitle = `${site.name} | Software Engineer Portfolio`;
 const pageDescription =
-  "Private portfolio for Harman Kailey featuring software engineering work, technical projects, and selected personal interests.";
+  "Private portfolio for Harman Kailey featuring work experience, education, and personal interests.";
 const pageUrl = Astro.url.toString();
 const previewImage = new URL(profilePic.src, Astro.url).toString();
 const faviconVersion = "hk-2";
@@ -57,7 +57,7 @@ const faviconVersion = "hk-2";
       <SiteHeader
         name={site.name}
         homePath={`${basePath}/` || "/"}
-        navItems={homeSections.map(({ id, label }) => ({ id, label }))}
+        navItems={navItems}
       />
 
       <main class="page-content">
@@ -68,28 +68,91 @@ const faviconVersion = "hk-2";
           eyebrow={heroContent.eyebrow}
           primaryCta={heroContent.primaryCta}
           secondaryCta={heroContent.secondaryCta}
-          statusLabel={heroContent.statusLabel}
         />
         {homeSections.map(({ id, component: Section, props }) => (
           <Section id={id} {...props} />
         ))}
       </main>
+
+      <div class="scroll-controls" role="group" aria-label="Section navigation controls">
+        <button class="scroll-control scroll-control--prev" type="button" data-scroll-direction="prev">
+          <span class="sr-only">Previous section</span>
+        </button>
+        <button class="scroll-control scroll-control--next" type="button" data-scroll-direction="next">
+          <span class="sr-only">Next section</span>
+        </button>
+      </div>
     </div>
 
     <script is:inline>
+      const scrollRoot = document.querySelector(".page-content");
       const revealItems = document.querySelectorAll(".reveal");
+      const navLinks = Array.from(document.querySelectorAll(".topbar__nav a"));
+      const scrollControls = Array.from(document.querySelectorAll("[data-scroll-direction]"));
+      const scrollSections = Array.from(document.querySelectorAll("[data-scroll-section]"));
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let activeSectionIndex = 0;
+      const navLinkById = new Map(
+        navLinks
+          .map((link) => [link.hash.replace("#", ""), link])
+          .filter(([id]) => id)
+      );
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("is-visible");
+              entry.target.classList.add("is-loaded");
             }
           });
         },
-        { threshold: 0.18 }
+        { root: scrollRoot, threshold: 0.2 }
       );
 
       revealItems.forEach((item) => observer.observe(item));
+
+      const activeSectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting || !entry.target.id) {
+              return;
+            }
+
+            activeSectionIndex = scrollSections.indexOf(entry.target);
+            navLinks.forEach((link) => link.classList.remove("is-active"));
+            navLinkById.get(entry.target.id)?.classList.add("is-active");
+            updateScrollControls();
+          });
+        },
+        { root: scrollRoot, rootMargin: "-42% 0px -48% 0px", threshold: 0 }
+      );
+
+      const updateScrollControls = () => {
+        scrollControls.forEach((control) => {
+          const direction = control.dataset.scrollDirection;
+          const isDisabled =
+            (direction === "prev" && activeSectionIndex <= 0) ||
+            (direction === "next" && activeSectionIndex >= scrollSections.length - 1);
+
+          control.toggleAttribute("disabled", isDisabled);
+        });
+      };
+
+      scrollSections.forEach((section) => activeSectionObserver.observe(section));
+      updateScrollControls();
+
+      scrollControls.forEach((control) => {
+        control.addEventListener("click", () => {
+          const direction = control.dataset.scrollDirection === "prev" ? -1 : 1;
+          const nextIndex = Math.max(0, Math.min(scrollSections.length - 1, activeSectionIndex + direction));
+
+          scrollSections[nextIndex]?.scrollIntoView({
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+            block: "start",
+          });
+        });
+      });
     </script>
   </body>
 </html>

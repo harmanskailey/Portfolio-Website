@@ -6,6 +6,7 @@ type Props = {
   id?: string;
   eyebrow?: string;
   heading?: string;
+  stageLabel?: string;
   items: ExperienceItem[];
 };
 
@@ -13,11 +14,12 @@ const {
   id = "experience",
   eyebrow = "Experience",
   heading = "Professional experience and the work patterns behind it.",
+  stageLabel,
   items,
 } = Astro.props;
 ---
 
-<SectionShell id={id} eyebrow={eyebrow} heading={heading}>
+<SectionShell id={id} eyebrow={eyebrow} heading={heading} stageLabel={stageLabel}>
   <div class="timeline">
     {items.map((item) => (
       <article class="timeline-card glass-panel spotlight-panel">
@@ -32,6 +34,16 @@ const {
             <li>{bullet}</li>
           ))}
         </ul>
+        {item.details && item.details.length > 0 && (
+          <details class="story-disclosure">
+            <summary>More about this role</summary>
+            <ul class="detail-list">
+              {item.details.map((detail) => (
+                <li>{detail}</li>
+              ))}
+            </ul>
+          </details>
+        )}
       </article>
     ))}
   </div>

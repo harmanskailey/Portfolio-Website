@@ -4,14 +4,18 @@ type Props = {
   eyebrow: string;
   heading: string;
   className?: string;
+  stageLabel?: string;
 };
 
-const { id, eyebrow, heading, className } = Astro.props;
+const { id, eyebrow, heading, className, stageLabel } = Astro.props;
 ---
 
-<section id={id} class:list={["section-grid", "reveal", className]}>
+<section id={id} class:list={["section-grid", "reveal", className]} data-scroll-section>
   <div class="section-heading">
-    <p class="eyebrow">{eyebrow}</p>
+    <div class="section-kicker">
+      {stageLabel && <span class="section-stage">{stageLabel}</span>}
+      <p class="eyebrow">{eyebrow}</p>
+    </div>
     <h2>{heading}</h2>
   </div>
 

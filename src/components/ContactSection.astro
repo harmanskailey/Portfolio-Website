@@ -1,45 +1,48 @@
 ---
-import type { LinkItem } from "../data/portfolio";
+import type { LinkItem, SiteContent } from "../data/portfolio";
 import SectionShell from "./SectionShell.astro";
 
 type Props = {
   id?: string;
   eyebrow?: string;
   heading?: string;
-  interests: string[];
+  stageLabel?: string;
+  site: SiteContent;
   socialLinks: LinkItem[];
 };
 
 const {
   id = "contact",
   eyebrow = "Contact",
-  heading = "Interests, links, and the easiest ways to reach me.",
-  interests,
+  heading = "A simple place to reach me directly.",
+  stageLabel,
+  site,
   socialLinks,
 } = Astro.props;
 ---
 
-<SectionShell id={id} eyebrow={eyebrow} heading={heading}>
-  <div class="contact-layout">
-    <article class="glass-panel spotlight-panel contact-card">
-      <h3>Interests</h3>
-      <div class="chip-row">
-        {interests.map((interest) => (
-          <span class="chip chip-soft">{interest}</span>
-        ))}
-      </div>
-    </article>
+<SectionShell id={id} eyebrow={eyebrow} heading={heading} stageLabel={stageLabel}>
+  <div class="contact-panel glass-panel spotlight-panel">
+    <div>
+      <p class="project-card__category">Open To</p>
+      <h3>{site.availability}</h3>
+      <p>
+        The easiest way to start a conversation is email, but LinkedIn and GitHub
+        are here too if you want a broader look at the work.
+      </p>
+    </div>
 
-    <article class="glass-panel spotlight-panel contact-card">
-      <h3>Connect</h3>
-      <p>I am easiest to reach by email or LinkedIn, and I keep code samples on GitHub.</p>
-      <div class="link-list">
-        {socialLinks.map((link) => (
-          <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-            {link.label}
-          </a>
-        ))}
-      </div>
-    </article>
+    <div class="contact-panel__links">
+      {socialLinks.map((link) => (
+        <a
+          class="contact-link"
+          href={link.href}
+          target={link.href.startsWith("http") ? "_blank" : undefined}
+          rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
   </div>
 </SectionShell>

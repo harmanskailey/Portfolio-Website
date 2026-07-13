@@ -1,24 +1,8 @@
 import type {
+  EducationItem,
   ExperienceItem,
-  FocusArea,
-  ProjectItem,
-  SkillsContent,
+  InterestItem,
 } from "./types";
-
-export const focusAreas: FocusArea[] = [
-  {
-    title: "Text",
-    text: "Text.",
-  },
-  {
-    title: "Text",
-    text: "Text.",
-  },
-  {
-    title: "Text",
-    text: "Text.",
-  },
-];
 
 export const experience: ExperienceItem[] = [
   {
@@ -33,60 +17,65 @@ export const experience: ExperienceItem[] = [
       "Used Trello and Git to stay organized and keep delivery moving.",
       "Supported end-user data requests with SQL analysis and reporting.",
     ],
+    details: [
+      "Worked across client-facing sites where small UI and content changes needed to stay stable in production.",
+      "Balanced implementation work with support requests, reporting needs, and the practical constraints of existing CMS tooling.",
+      "Built early habits around communication, version control, and making incremental improvements without breaking active workflows.",
+    ],
   },
 ];
 
-export const skills: SkillsContent = {
-  stack: [
-    "JavaScript",
-    "TypeScript",
-    "Python",
-    "Java",
-    "SQL",
-    "Astro",
-    "HTML",
-    "CSS",
-    "AWS",
-    "Git",
-  ],
-  hardware: [
-    "Embedded systems",
-    "Raspberry Pi",
-    "Circuit debugging",
-    "Digital logic design",
-    "Sensor-based prototyping",
-  ],
-};
-
-export const projects: ProjectItem[] = [
+export const education: EducationItem[] = [
   {
-    title: "Streamlined Dining",
-    category: "Operations platform",
-    description:
-      "A restaurant workflow tool built to reduce communication friction between guests, servers, and the kitchen.",
-    tags: ["Flask", "PostgreSQL", "SQLAlchemy", "Jinja", "Team delivery"],
+    degree: "M.S. Applied Statistics",
+    school: "Rochester Institute of Technology",
+    period: "In progress",
+    summary:
+      "Part-time graduate study focused on statistical thinking, modeling, and practical analysis.",
+    details: [
+      "Building a stronger foundation in applied inference, data interpretation, and quantitative communication.",
+      "Connecting statistical methods back to software projects, product decisions, and real-world systems.",
+      "Using the program as a way to sharpen how I frame questions before jumping into implementation.",
+    ],
   },
   {
-    title: "Computer Vision Assisted Stop Light",
-    category: "Applied computer vision",
-    description:
-      "A hardware-software concept for analyzing live intersection traffic and adapting signal timing with image processing.",
-    tags: ["Python", "OpenCV", "Raspberry Pi", "Camera systems"],
-  },
-  {
-    title: "3D Printed Smart Lock",
-    category: "Connected hardware",
-    description:
-      "A smart lock concept blending 3D design, motors, Bluetooth setup, and NFC-based access workflows.",
-    tags: ["IoT", "Android", "NFC", "Mechanical design"],
+    degree: "Engineering and systems coursework",
+    school: "Undergraduate foundation",
+    period: "Prior study",
+    summary:
+      "Coursework and project work spanning software, hardware, embedded systems, and digital logic.",
+    details: [
+      "Developed comfort moving between code, circuits, sensors, and system-level constraints.",
+      "Built a foundation for projects involving Raspberry Pi, computer vision, and connected hardware.",
+      "Learned to approach problems from both implementation and architecture perspectives.",
+    ],
   },
 ];
 
-export const interests: string[] = [
-  "Microprocessor design",
-  "Quantum computing",
-  "Computer vision",
-  "Signal processing",
-  "Hiking",
-  "Music",
+export const personalInterests: InterestItem[] = [
+  {
+    title: "Cooking from scratch",
+    text: "One of my favorite ways to travel without leaving the kitchen: rustic tools, bright flavor, and a lot of iteration.",
+    tags: ["Cast iron", "Southeast Asian flavors", "Mason jar ops"],
+    details: [
+      "I lean toward Southeast Asian flavor palettes, especially honey, ginger, garlic, lime, chili, and herbs.",
+      "I like cooking with cast iron, Dutch ovens, mortar and pestle work, and from-scratch prep.",
+      "I have become mildly intense about turning mason jars into a tiny kitchen operations system.",
+    ],
+    imageSources: [
+      "/images/cooking/6.jpeg",
+      "/images/cooking/9.jpeg",
+      "/images/cooking/12.jpg",
+    ],
+  },
+  {
+    title: "Systems and hardware",
+    text: "I like understanding how the lower-level pieces fit together, from microprocessors to sensor-driven prototypes.",
+    tags: ["Embedded", "Circuits", "Debugging"],
+  },
+  {
+    title: "Outdoors and music",
+    text: "The non-screen side of the balance sheet: hiking, listening closely, and giving my brain room to recombine ideas.",
+    tags: ["Hiking", "Music", "Reset"],
+  },
 ];

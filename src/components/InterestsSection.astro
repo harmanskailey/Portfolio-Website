@@ -1,0 +1,52 @@
+---
+import type { InterestItem } from "../data/portfolio";
+import SectionShell from "./SectionShell.astro";
+
+type Props = {
+  id?: string;
+  eyebrow?: string;
+  heading?: string;
+  stageLabel?: string;
+  items: InterestItem[];
+};
+
+const {
+  id = "interests",
+  eyebrow = "Interests",
+  heading = "Personal interests that keep the technical work curious and grounded.",
+  stageLabel,
+  items,
+} = Astro.props;
+---
+
+<SectionShell id={id} eyebrow={eyebrow} heading={heading} stageLabel={stageLabel}>
+  <div class="interest-grid">
+    {items.map((item) => (
+      <article class:list={["interest-card", "glass-panel", "spotlight-panel", item.imageSources && "interest-card--feature"]}>
+        <div class="interest-card__body">
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+          {item.details && item.details.length > 0 && (
+            <ul class="detail-list interest-card__details">
+              {item.details.map((detail) => (
+                <li>{detail}</li>
+              ))}
+            </ul>
+          )}
+          <div class="chip-row">
+            {item.tags.map((tag) => (
+              <span class="chip chip-soft">{tag}</span>
+            ))}
+          </div>
+        </div>
+        {item.imageSources && item.imageSources.length > 0 && (
+          <div class="interest-card__gallery" aria-label={`${item.title} photos`}>
+            {item.imageSources.map((src, index) => (
+              <img src={src} alt={`${item.title} highlight ${index + 1}`} loading="lazy" />
+            ))}
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+</SectionShell>

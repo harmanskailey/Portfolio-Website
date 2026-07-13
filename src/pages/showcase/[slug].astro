@@ -9,7 +9,7 @@ import FireText from "../../components/FireText.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
 import WaterfallBackground from "../../components/WaterfallBackground.astro";
 import profilePic from "../../assets/img/profile.jpeg";
-import { homeSections } from "../../config/homeSections";
+import { navItems } from "../../config/homeSections";
 import { showcases, site } from "../../data/portfolio";
 import type { ShowcaseImage } from "../../data/portfolio";
 
@@ -168,7 +168,7 @@ const faviconVersion = "hk-2";
       <SiteHeader
         name={site.name}
         homePath={homePath}
-        navItems={homeSections.map(({ id, label }) => ({ id, label }))}
+        navItems={navItems}
       />
 
       <main class="page-content">
