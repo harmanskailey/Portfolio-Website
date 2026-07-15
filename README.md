@@ -1,8 +1,8 @@
 # Harman Kailey Portfolio
 
 An Astro portfolio with a concise professional overview, detailed work and
-project pages, and a separate cooking journal. Vercel Edge Middleware keeps the
-site behind a signed, expiring passcode session.
+project pages, and a separate cooking journal. Vercel Routing Middleware keeps
+the site behind a signed, expiring passcode session.
 
 ## Local development
 
@@ -30,9 +30,10 @@ npm run build
 npm run test:auth
 ```
 
-`test:auth` creates an ephemeral test secret, builds the Vercel edge bundle, and
-checks route and asset protection, signed-cookie validation, safe redirects,
-and fail-closed behavior. It does not read or print the real passcode.
+`test:auth` creates an ephemeral test secret, builds the Vercel output, and
+checks route and asset protection, middleware continuation, signed-cookie
+validation, safe redirects, and fail-closed behavior. It does not read or print
+the real passcode.
 
 ## Content structure
 
@@ -58,9 +59,10 @@ The tracked social card is generated from `public/og-card.svg`. Run
 
 ## Deployment
 
-The site is configured for `https://harmanskailey.com` and the Vercel adapter's
-edge middleware mode. Every request is checked at the edge before Vercel serves
-pages or static assets.
+The site is configured for `https://harmanskailey.com` and Vercel's native
+Routing Middleware. The root `middleware.ts` checks every request before Vercel
+serves pages or static assets, while `src/middleware.ts` applies the same policy
+inside Astro for local development and server-rendered routes.
 
 Create `PORTFOLIO_PASSCODE` in the Vercel project for both **Preview** and
 **Production** environments before deploying. Changing an environment variable
