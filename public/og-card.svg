@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f4f2ec"/>
+  <circle cx="1060" cy="95" r="220" fill="#e7d8c8"/>
+  <circle cx="1110" cy="555" r="270" fill="#dce6df"/>
+  <path d="M80 92h1040" stroke="#17221f" stroke-opacity=".18"/>
+  <circle cx="116" cy="146" r="36" fill="#17221f"/>
+  <text x="116" y="154" fill="#fffdf8" font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle" letter-spacing="2">HK</text>
+  <text x="176" y="158" fill="#17221f" font-family="Arial, sans-serif" font-size="28" font-weight="700">Harman Kailey</text>
+  <text x="80" y="285" fill="#a6452c" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3">SOFTWARE ENGINEER</text>
+  <text x="80" y="380" fill="#17221f" font-family="Georgia, serif" font-size="70" font-weight="600">Dependable integrations.</text>
+  <text x="80" y="460" fill="#17221f" font-family="Georgia, serif" font-size="70" font-weight="600">Practical automation.</text>
+  <text x="80" y="545" fill="#5e6864" font-family="Arial, sans-serif" font-size="26">Enterprise identity · Backend systems · Applied statistics</text>
+</svg>

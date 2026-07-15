@@ -1,49 +1,49 @@
-export type SiteContent = {
-  name: string;
-  title: string;
-  intro: string;
-  email: string;
-  location: string;
-  availability: string;
-  portraitSubtitle?: string;
-  portraitStack?: {
-    eyebrow: string;
-    text: string;
-  }[];
-};
+import type { ImageMetadata } from "astro";
 
 export type LinkItem = {
   label: string;
   href: string;
 };
 
-export type HeroHighlight = {
+export type SiteContent = {
+  name: string;
   eyebrow: string;
-  title: string;
-  text: string;
-  href: string;
+  headline: string;
+  intro: string;
+  email: string;
+  location: string;
+  availability: string;
+  description: string;
 };
 
-export type ShowcaseImage = {
-  src: string;
-  alt: string;
-  caption?: string;
-};
-
-export type ShowcaseResource = {
+export type ImpactItem = {
+  value: string;
   label: string;
-  href: string;
-  kind: "pdf" | "html" | "repo" | "demo" | "external";
-  description?: string;
+  description: string;
 };
 
-export type ExperienceItem = {
-  role: string;
-  company: string;
+export type DetailSection = {
+  heading: string;
+  summary?: string;
+  paragraphs?: string[];
+  bullets?: string[];
+};
+
+export type WorkItem = {
+  slug: string;
+  kind: "experience" | "project";
+  title: string;
+  organization?: string;
+  location?: string;
   period: string;
   summary: string;
-  bullets: string[];
-  details?: string[];
+  highlights: string[];
+  skills: string[];
+  sections: DetailSection[];
+  links?: LinkItem[];
+  featured?: boolean;
+  earlier?: boolean;
+  confidentialityNote?: string;
 };
 
 export type EducationItem = {
@@ -51,26 +51,30 @@ export type EducationItem = {
   school: string;
   period: string;
   summary: string;
-  details: string[];
 };
 
-export type InterestItem = {
+export type CapabilityGroup = {
   title: string;
-  text: string;
-  tags: string[];
-  details?: string[];
-  imageSources?: string[];
-};
-
-export type ShowcaseItem = {
-  slug: string;
-  title: string;
-  category: string;
   summary: string;
-  tags: string[];
-  bullets: string[];
-  links?: LinkItem[];
-  images?: ShowcaseImage[];
-  featuredImageSources?: string[];
-  resources?: ShowcaseResource[];
+  primary: string[];
+  supporting: string[];
+};
+
+export type CookingImage = {
+  src: ImageMetadata;
+  alt: string;
+  caption: string;
+  group: "featured" | "gallery" | "process";
+};
+
+export type CookingContent = {
+  title: string;
+  eyebrow: string;
+  summary: string;
+  philosophy: string;
+  themes: {
+    title: string;
+    text: string;
+  }[];
+  images: CookingImage[];
 };

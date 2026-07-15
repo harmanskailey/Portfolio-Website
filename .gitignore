@@ -29,6 +29,12 @@ pnpm-debug.log*
 # local image backups
 public/images/cooking/_originals_backup/
 
+# temporary Microsoft Office lock files
+~$*.docx
+
+# working resume documents (publish an approved PDF separately)
+/HarmanKaileyResume*.docx
+
 # macOS-specific files
 .DS_Store
 Thumbs.db

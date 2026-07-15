@@ -1,0 +1,131 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { site, workItems } from "../../data/portfolio";
+import type { WorkItem } from "../../data/portfolio";
+import "../../styles/work.css";
+
+export function getStaticPaths() {
+  return workItems.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+type Props = {
+  item: WorkItem;
+};
+
+const { item } = Astro.props;
+const eyebrow =
+  item.kind === "experience" ? "Professional experience" : "Project case study";
+---
+
+<Layout title={item.title} description={item.summary}>
+  <main id="main-content" class="page-main detail-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Portfolio</a></li>
+        <li>
+          <span>{item.kind === "experience" ? "Experience" : "Projects"}</span>
+        </li>
+        <li aria-current="page">{item.title}</li>
+      </ol>
+    </nav>
+
+    <article>
+      <header class="case-hero">
+        <div>
+          <p class="eyebrow">{eyebrow}</p>
+          <h1>{item.title}</h1>
+          {
+            item.organization && (
+              <p class="case-hero__organization">{item.organization}</p>
+            )
+          }
+          <p class="case-hero__period">
+            {item.period}{item.location ? ` · ${item.location}` : ""}
+          </p>
+        </div>
+        <p class="case-hero__summary">{item.summary}</p>
+      </header>
+
+      <section class="case-highlights" aria-labelledby="highlights-title">
+        <h2 id="highlights-title">At a glance</h2>
+        <div class="case-highlights__grid">
+          {item.highlights.map((highlight) => <p>{highlight}</p>)}
+        </div>
+      </section>
+
+      <div class="case-layout">
+        <div class="case-sections">
+          {
+            item.sections.map((section) => (
+              <section>
+                <h2>{section.heading}</h2>
+                {section.summary && (
+                  <p class="case-section__summary">{section.summary}</p>
+                )}
+                {section.paragraphs?.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+                {section.bullets && (
+                  <ul class="highlight-list">
+                    {section.bullets.map((bullet) => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))
+          }
+        </div>
+
+        <aside class="case-aside">
+          <div>
+            <h2>Tools and focus</h2>
+            <div class="chip-list chip-list--strong">
+              {item.skills.map((skill) => <span>{skill}</span>)}
+            </div>
+          </div>
+          {
+            item.links && (
+              <div>
+                <h2>Links</h2>
+                {item.links.map((link) => (
+                  <a
+                    class="text-link"
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {link.label} <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </div>
+            )
+          }
+          {
+            item.confidentialityNote && (
+              <p class="confidentiality-note">{item.confidentialityNote}</p>
+            )
+          }
+        </aside>
+      </div>
+    </article>
+
+    <aside class="next-step">
+      <p class="eyebrow">Continue exploring</p>
+      <h2>Return to the concise overview or start a conversation.</h2>
+      <div class="button-row">
+        <a
+          class="button button--secondary"
+          href={item.kind === "experience" ? "/#experience" : "/#projects"}
+          >Back to portfolio</a
+        >
+        <a class="button button--primary" href={`mailto:${site.email}`}
+          >Get in touch</a
+        >
+      </div>
+    </aside>
+  </main>
+</Layout>

@@ -1,0 +1,59 @@
+---
+import type { CapabilityGroup, EducationItem } from "../data/portfolio";
+import SectionShell from "./SectionShell.astro";
+
+type Props = {
+  education: EducationItem[];
+  capabilities: CapabilityGroup[];
+};
+
+const { education, capabilities } = Astro.props;
+---
+
+<SectionShell
+  id="background"
+  eyebrow="Background"
+  heading="Engineering foundations, statistical study, and practical delivery tools."
+>
+  <div class="background-grid">
+    <div class="education-list">
+      <h3>Education</h3>
+      {
+        education.map((item) => (
+          <article class="education-item">
+            <p class="education-item__school">{item.school}</p>
+            <h4>{item.degree}</h4>
+            <p class="education-item__period">{item.period}</p>
+            <p>{item.summary}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="capability-list">
+      <h3>Capabilities</h3>
+      {
+        capabilities.map((group) => (
+          <details class="capability-item">
+            <summary>
+              <span>
+                <strong>{group.title}</strong>
+                <small>{group.summary}</small>
+              </span>
+            </summary>
+            <div class="capability-item__content">
+              <div class="chip-list chip-list--strong">
+                {group.primary.map((skill) => (
+                  <span>{skill}</span>
+                ))}
+              </div>
+              <p class="supporting-tools">
+                Also: {group.supporting.join(", ")}
+              </p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</SectionShell>

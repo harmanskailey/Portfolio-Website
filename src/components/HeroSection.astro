@@ -1,150 +1,62 @@
 ---
-import type { HeroHighlight, SiteContent } from "../data/portfolio";
+import { Image } from "astro:assets";
+import profilePic from "../assets/img/profile.jpeg";
+import type { ImpactItem, SiteContent } from "../data/portfolio";
 
 type Props = {
   site: SiteContent;
-  profileImage: string;
-  heroHighlights?: HeroHighlight[];
-  eyebrow?: string;
-  primaryCta?: {
-    href: string;
-    label: string;
-  };
-  secondaryCta?: {
-    href: string;
-    label: string;
-  };
+  impactItems: ImpactItem[];
 };
 
-const {
-  site,
-  profileImage,
-  heroHighlights = [],
-  eyebrow = "Portfolio",
-  primaryCta = {
-    href: "#experience",
-    label: "View work experience",
-  },
-  secondaryCta = {
-    href: `mailto:${site.email}`,
-    label: "Start a conversation",
-  },
-} = Astro.props;
-
-const heroTitleParts = site.title
-  .split(".")
-  .map((part) => part.trim())
-  .filter(Boolean);
-const [heroQuestionLineRaw = "", heroCodeLineRaw = "", heroMathLineRaw = ""] = heroTitleParts;
-const heroQuestionLine = heroQuestionLineRaw ? `${heroQuestionLineRaw}.` : "";
-const heroCodeLine = heroCodeLineRaw ? `${heroCodeLineRaw}.` : "";
-const heroMathLine = heroMathLineRaw ? `${heroMathLineRaw}.` : "";
-const questionMarks = [
-  { x: "8%", y: "12%", duration: "7.2s", delay: "-0.3s", scale: "0.85" },
-  { x: "29%", y: "-10%", duration: "8.8s", delay: "-2.2s", scale: "1.15" },
-  { x: "58%", y: "6%", duration: "7.9s", delay: "-1.4s", scale: "0.95" },
-  { x: "82%", y: "-6%", duration: "8.6s", delay: "-3.1s", scale: "1.05" },
-  { x: "91%", y: "24%", duration: "7.5s", delay: "-0.9s", scale: "0.78" },
-];
-const codeFragments = [
-  { text: "if (signal) {", x: "4%", y: "12%", duration: "9.5s", delay: "-1.2s" },
-  { text: "return build();", x: "66%", y: "-10%", duration: "8.4s", delay: "-3.4s" },
-  { text: "<engineer />", x: "72%", y: "52%", duration: "9.1s", delay: "-0.8s" },
-  { text: "const result = ship();", x: "14%", y: "82%", duration: "10.2s", delay: "-4.1s" },
-];
-const formulaFragments = [
-  { text: "P(A|B)", x: "3%", y: "10%", duration: "9.3s", delay: "-1.9s" },
-  { text: "sigma^2", x: "74%", y: "-8%", duration: "8.6s", delay: "-0.7s" },
-  { text: "integral f(x)dx", x: "69%", y: "58%", duration: "9.7s", delay: "-3.1s" },
-  { text: "x_bar +/- 1.96s", x: "16%", y: "84%", duration: "10.6s", delay: "-4.6s" },
-];
+const { site, impactItems } = Astro.props;
 ---
 
-<section class="hero reveal" id="hero" data-scroll-section>
-  <div class="hero__copy glass-panel spotlight-panel">
-    <p class="eyebrow">{eyebrow}</p>
-    <h1 class="hero__title">
-      <span class="hero__question-line">
-        <span class="hero__question-text">{heroQuestionLine}</span>
-        <span class="hero__question-cloud" aria-hidden="true">
-          {questionMarks.map((mark) => (
-            <span
-              class="hero__question-mark"
-              style={`--question-x:${mark.x}; --question-y:${mark.y}; --question-duration:${mark.duration}; --question-delay:${mark.delay}; --question-scale:${mark.scale};`}
-            >
-              ?
-            </span>
-          ))}
-        </span>
-      </span>
-      {heroCodeLine && (
-        <span class="hero__code-line">
-          <span class="hero__code-text">{heroCodeLine}</span>
-          <span class="hero__code-cloud" aria-hidden="true">
-            {codeFragments.map((fragment) => (
-              <span
-                class="hero__code-fragment"
-                style={`--fragment-x:${fragment.x}; --fragment-y:${fragment.y}; --fragment-duration:${fragment.duration}; --fragment-delay:${fragment.delay};`}
-              >
-                {fragment.text}
-              </span>
-            ))}
-          </span>
-        </span>
-      )}
-      {heroMathLine && (
-        <span class="hero__math-line">
-          <span class="hero__math-text">{heroMathLine}</span>
-          <span class="hero__math-cloud" aria-hidden="true">
-            {formulaFragments.map((fragment) => (
-              <span
-                class="hero__math-fragment"
-                style={`--fragment-x:${fragment.x}; --fragment-y:${fragment.y}; --fragment-duration:${fragment.duration}; --fragment-delay:${fragment.delay};`}
-              >
-                {fragment.text}
-              </span>
-            ))}
-          </span>
-        </span>
-      )}
-    </h1>
-    <p class="hero__lede">{site.intro}</p>
-
-    <div class="hero__actions">
-      <a class="primary-button" href={primaryCta.href}>{primaryCta.label}</a>
-      <a class="secondary-button" href={secondaryCta.href}>{secondaryCta.label}</a>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__copy">
+    <p class="eyebrow">{site.eyebrow}</p>
+    <h1 id="hero-title">{site.headline}</h1>
+    <p class="hero__intro">{site.intro}</p>
+    <div class="button-row">
+      <a class="button button--primary" href="#experience">Explore my work</a>
+      <a class="button button--secondary" href={`mailto:${site.email}`}
+        >Get in touch</a
+      >
     </div>
-
-    {heroHighlights.length > 0 && (
-      <div class="hero__highlights">
-        {heroHighlights.map((item) => (
-          <a class="hero-highlight-card" href={item.href}>
-            <p class="hero-highlight-card__eyebrow">{item.eyebrow}</p>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </a>
-        ))}
-      </div>
-    )}
+    <p class="hero__location">
+      {site.location} · Applied Statistics M.S. candidate
+    </p>
   </div>
 
-  <aside class="hero__visual reveal">
-    <div class="portrait-card glass-panel spotlight-panel">
-      <img src={profileImage} alt={`${site.name} portrait`} class="portrait-card__image" />
-      <div class="portrait-card__body">
-        <h2>{site.name}</h2>
-        {site.portraitSubtitle && <p class="portrait-card__subtitle">{site.portraitSubtitle}</p>}
-        {site.portraitStack && site.portraitStack.length > 0 && (
-          <div class="portrait-card__stack">
-            {site.portraitStack.map((item) => (
-              <div class="portrait-card__stack-item">
-                <p class="portrait-card__meta">{item.eyebrow}</p>
-                <p>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  </aside>
+  <figure class="portrait">
+    <Image
+      src={profilePic}
+      alt={`${site.name} kneeling beside his dog on a sunlit balcony`}
+      width={720}
+      widths={[360, 540, 720]}
+      sizes="(max-width: 720px) calc(100vw - 2rem), (max-width: 960px) 30rem, 22rem"
+      layout="constrained"
+      quality={82}
+      format="webp"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <figcaption>
+      <span>{site.name}</span>
+      <span>Software engineer</span>
+    </figcaption>
+  </figure>
+
+  <dl class="impact-strip" aria-label="Selected impact">
+    {
+      impactItems.map((item) => (
+        <div class="impact-item">
+          <dt>
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+          </dt>
+          <dd>{item.description}</dd>
+        </div>
+      ))
+    }
+  </dl>
 </section>

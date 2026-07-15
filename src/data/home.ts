@@ -1,81 +1,74 @@
-import type {
-  EducationItem,
-  ExperienceItem,
-  InterestItem,
-} from "./types";
+import type { CapabilityGroup, EducationItem, ImpactItem } from "./types";
 
-export const experience: ExperienceItem[] = [
+export const impactItems: ImpactItem[] = [
   {
-    role: "Software Engineer Intern",
-    company: "IT By Design",
-    period: "Dec 2018 - Oct 2020",
-    summary:
-      "Refreshed client-facing web experiences, customized CMS workflows, and supported data-driven requests across production environments.",
-    bullets: [
-      "Updated front-end experiences using WordPress and Avada in a deployed production environment.",
-      "Customized themes and plugins with HTML, CSS, PHP, and JavaScript.",
-      "Used Trello and Git to stay organized and keep delivery moving.",
-      "Supported end-user data requests with SQL analysis and reporting.",
-    ],
-    details: [
-      "Worked across client-facing sites where small UI and content changes needed to stay stable in production.",
-      "Balanced implementation work with support requests, reporting needs, and the practical constraints of existing CMS tooling.",
-      "Built early habits around communication, version control, and making incremental improvements without breaking active workflows.",
-    ],
+    value: "8+",
+    label: "Enterprise applications",
+    description:
+      "Integrated with an in-house identity and access management platform.",
+  },
+  {
+    value: "Hundreds",
+    label: "Staff hours saved",
+    description: "Through automation of a campus ID-photo workflow.",
+  },
+  {
+    value: "Since 2022",
+    label: "Enterprise IAM delivery",
+    description: "Building integrations and operational tools at RIT.",
   },
 ];
 
 export const education: EducationItem[] = [
   {
-    degree: "M.S. Applied Statistics",
+    degree: "M.S. in Applied Statistics",
     school: "Rochester Institute of Technology",
-    period: "In progress",
+    period: "Expected August 2027",
     summary:
-      "Part-time graduate study focused on statistical thinking, modeling, and practical analysis.",
-    details: [
-      "Building a stronger foundation in applied inference, data interpretation, and quantitative communication.",
-      "Connecting statistical methods back to software projects, product decisions, and real-world systems.",
-      "Using the program as a way to sharpen how I frame questions before jumping into implementation.",
-    ],
+      "Part-time graduate study focused on statistical reasoning, modeling, practical analysis, and quantitative communication.",
   },
   {
-    degree: "Engineering and systems coursework",
-    school: "Undergraduate foundation",
-    period: "Prior study",
+    degree: "B.S. in Electrical and Computer Engineering",
+    school: "Rutgers University",
+    period: "January 2021",
     summary:
-      "Coursework and project work spanning software, hardware, embedded systems, and digital logic.",
-    details: [
-      "Developed comfort moving between code, circuits, sensors, and system-level constraints.",
-      "Built a foundation for projects involving Raspberry Pi, computer vision, and connected hardware.",
-      "Learned to approach problems from both implementation and architecture perspectives.",
-    ],
+      "An engineering foundation spanning software, hardware, embedded systems, circuits, and system-level problem solving.",
   },
 ];
 
-export const personalInterests: InterestItem[] = [
+export const capabilityGroups: CapabilityGroup[] = [
   {
-    title: "Cooking from scratch",
-    text: "One of my favorite ways to travel without leaving the kitchen: rustic tools, bright flavor, and a lot of iteration.",
-    tags: ["Cast iron", "Southeast Asian flavors", "Mason jar ops"],
-    details: [
-      "I lean toward Southeast Asian flavor palettes, especially honey, ginger, garlic, lime, chili, and herbs.",
-      "I like cooking with cast iron, Dutch ovens, mortar and pestle work, and from-scratch prep.",
-      "I have become mildly intense about turning mason jars into a tiny kitchen operations system.",
-    ],
-    imageSources: [
-      "/images/cooking/6.jpeg",
-      "/images/cooking/9.jpeg",
-      "/images/cooking/12.jpg",
+    title: "Development and data",
+    summary:
+      "Integration services, automation, analytical applications, and production data support.",
+    primary: ["PHP", "JavaScript", "Python", "SQL", "PL/SQL", "R"],
+    supporting: [
+      "Java",
+      "HTML/CSS",
+      "Oracle Database",
+      "REST APIs",
+      "JSON",
+      "XML",
     ],
   },
   {
-    title: "Systems and hardware",
-    text: "I like understanding how the lower-level pieces fit together, from microprocessors to sensor-driven prototypes.",
-    tags: ["Embedded", "Circuits", "Debugging"],
+    title: "Identity and enterprise systems",
+    summary:
+      "Identity integrations, provisioning workflows, and application access controls.",
+    primary: ["IAM", "LDAP", "Active Directory", "RBAC", "ABAC", "Shibboleth"],
+    supporting: [
+      "Duo",
+      "Microsoft 365",
+      "Google Workspace",
+      "ServiceNow",
+      "Workday exposure",
+    ],
   },
   {
-    title: "Outdoors and music",
-    text: "The non-screen side of the balance sheet: hiking, listening closely, and giving my brain room to recombine ideas.",
-    tags: ["Hiking", "Music", "Reset"],
+    title: "Platforms and delivery",
+    summary:
+      "Diagnosis and delivery across development and production environments.",
+    primary: ["AWS", "Linux", "Kubernetes", "kubectl", "GitLab", "CI/CD"],
+    supporting: ["Okteto", "Jira", "Confluence", "Remote Desktop", "Vercel"],
   },
 ];

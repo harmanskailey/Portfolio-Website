@@ -2,31 +2,17 @@ import type { LinkItem, SiteContent } from "./types";
 
 export const site: SiteContent = {
   name: "Harman Kailey",
-  title: "I've Been Learning To Ask The Right Questions. Results Driven Software Engineer. Applied Statistician.",
+  eyebrow: "Software engineer · Enterprise integrations · Applied statistics",
+  headline:
+    "Building dependable integrations and automation for complex operational systems.",
   intro:
-    "I build across web development, applied technical projects, and a few long-term interests outside of work. This site is meant to stay simple now and grow cleanly as I add more real project detail.",
+    "I’m a software engineer focused on enterprise identity, backend integrations, and production support, with graduate study in applied statistics. I care about clear ownership, practical automation, and systems people can depend on.",
   email: "harmanskailey@gmail.com",
   location: "New Jersey, USA",
-  availability: "Open to engineering roles, freelance builds, and creative technical collaborations.",
-  portraitSubtitle: "Ultra Full-Time Dog Dad",
-  portraitStack: [
-    {
-      eyebrow: "Based In",
-      text: "New Jersey, USA",
-    },
-    {
-      eyebrow: "Currently",
-      text: "Part-time Masters student studying Applied Statistics at RIT.",
-    },
-    {
-      eyebrow: "Open To",
-      text: "Engineering roles, freelance builds, and creative technical collaborations.",
-    },
-    {
-      eyebrow: "Education",
-      text: "B.S. Electrical and Computer Engineering at Rutgers University '2021",
-    },
-  ],
+  availability:
+    "Open to software engineering opportunities and thoughtful technical collaborations.",
+  description:
+    "Portfolio of Harman Kailey, a software engineer focused on enterprise integrations, identity automation, production support, and applied statistics.",
 };
 
 export const socialLinks: LinkItem[] = [
