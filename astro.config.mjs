@@ -1,5 +1,10 @@
 import { defineConfig } from "astro/config";
+import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   site: "https://harmanskailey.com",
+  output: "server",
+  adapter: vercel({
+    middlewareMode: "edge",
+  }),
 });

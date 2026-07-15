@@ -24,7 +24,8 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
 
 # local image backups
 public/images/cooking/_originals_backup/
@@ -34,6 +35,7 @@ public/images/cooking/_originals_backup/
 
 # working resume documents (publish an approved PDF separately)
 /HarmanKaileyResume*.docx
+/HarmanKaileyResume*.pdf
 
 # macOS-specific files
 .DS_Store

@@ -1,16 +1,25 @@
 # Harman Kailey Portfolio
 
-A static Astro portfolio with a concise professional overview, detailed work and
-project pages, and a separate cooking journal.
+An Astro portfolio with a concise professional overview, detailed work and
+project pages, and a separate cooking journal. Vercel Edge Middleware keeps the
+site behind a signed, expiring passcode session.
 
 ## Local development
 
 ```sh
 npm install
+```
+
+Set a local passcode before starting Astro. In PowerShell:
+
+```powershell
+$env:PORTFOLIO_PASSCODE="local-development-only"
 npm run dev
 ```
 
 The development server defaults to `http://localhost:4321`.
+`PORTFOLIO_PASSCODE` is read only on the server and must never use Astro's
+`PUBLIC_` prefix.
 
 ## Quality checks
 
@@ -18,7 +27,12 @@ The development server defaults to `http://localhost:4321`.
 npm run check
 npm run format:check
 npm run build
+npm run test:auth
 ```
+
+`test:auth` creates an ephemeral test secret, builds the Vercel edge bundle, and
+checks route and asset protection, signed-cookie validation, safe redirects,
+and fail-closed behavior. It does not read or print the real passcode.
 
 ## Content structure
 
@@ -44,5 +58,13 @@ The tracked social card is generated from `public/og-card.svg`. Run
 
 ## Deployment
 
-The site builds to static files in `dist/` and is configured for the canonical
-domain `https://harmanskailey.com`. Any static host can serve the output.
+The site is configured for `https://harmanskailey.com` and the Vercel adapter's
+edge middleware mode. Every request is checked at the edge before Vercel serves
+pages or static assets.
+
+Create `PORTFOLIO_PASSCODE` in the Vercel project for both **Preview** and
+**Production** environments before deploying. Changing an environment variable
+only affects new deployments, so redeploy after adding or rotating it.
+
+The public `/robots.txt` route disallows crawling. The standalone `/login` page
+and the login/logout endpoints are the only other unauthenticated routes.
