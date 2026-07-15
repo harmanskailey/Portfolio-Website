@@ -1,21 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { site, workItems } from "../../data/portfolio";
-import type { WorkItem } from "../../data/portfolio";
 import "../../styles/work.css";
 
-export function getStaticPaths() {
-  return workItems.map((item) => ({
-    params: { slug: item.slug },
-    props: { item },
-  }));
-}
-
-type Props = {
-  item: WorkItem;
-};
-
-const { item } = Astro.props;
+const item = workItems.find(({ slug }) => slug === Astro.params.slug);
+if (!item) return Astro.rewrite("/404");
 const eyebrow =
   item.kind === "experience" ? "Professional experience" : "Project case study";
 ---
