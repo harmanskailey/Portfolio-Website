@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import type { CookingContent } from "../data/portfolio";
+
+type Props = {
+  content: CookingContent;
+};
+
+const { content } = Astro.props;
+const image =
+  content.images.find((item) => item.group === "featured") ?? content.images[0];
+---
+
+<section class="cooking-teaser" aria-labelledby="cooking-teaser-title">
+  <div class="cooking-teaser__copy">
+    <p class="eyebrow">Beyond work</p>
+    <h2 id="cooking-teaser-title">
+      The kitchen is where I iterate without a deployment checklist.
+    </h2>
+    <p>{content.summary}</p>
+    <a class="button button--secondary" href="/cooking"
+      >Explore the cooking journal</a
+    >
+  </div>
+  <figure>
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={900}
+      widths={[400, 650, 900]}
+      sizes="(max-width: 960px) calc(100vw - 5rem), 34rem"
+      layout="constrained"
+      quality={78}
+      format="webp"
+      loading="lazy"
+    />
+    <figcaption>{image.caption}</figcaption>
+  </figure>
+</section>

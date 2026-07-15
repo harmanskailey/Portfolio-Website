@@ -1,31 +1,38 @@
 ---
-type NavItem = {
-  id: string;
-  label: string;
-};
+import { site } from "../data/portfolio";
 
-type Props = {
-  name: string;
-  homePath?: string;
-  navItems?: NavItem[];
-};
-
-const {
-  name,
-  homePath = "/",
-  navItems = [],
-} = Astro.props;
+const normalizePath = (path: string) =>
+  path === "/" ? path : path.replace(/\/+$/, "");
+const currentPath = normalizePath(Astro.url.pathname);
+const navItems = [
+  { label: "Experience", href: "/#experience" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Background", href: "/#background" },
+  { label: "Cooking", href: "/cooking" },
+  { label: "Contact", href: "/#contact" },
+];
 ---
 
-<header class="topbar">
-  <a href={`${homePath}#hero`} class="brand-mark">
-    <span class="brand-mark__monogram" aria-hidden="true">HK</span>
-    <span>{name}</span>
+<header class="site-header">
+  <a href="/" class="brand" aria-label={`${site.name}, home`}>
+    <span class="brand__mark" aria-hidden="true">HK</span>
+    <span class="brand__name">{site.name}</span>
   </a>
 
-  <nav class="topbar__nav" aria-label="Section navigation">
-    {navItems.map((item) => (
-      <a href={`${homePath}#${item.id}`}>{item.label}</a>
-    ))}
+  <nav class="site-nav" aria-label="Primary navigation">
+    {
+      navItems.map((item) => (
+        <a
+          href={item.href}
+          aria-current={
+            !item.href.includes("#") && currentPath === normalizePath(item.href)
+              ? "page"
+              : undefined
+          }
+        >
+          {item.label}
+        </a>
+      ))
+    }
   </nav>
 </header>

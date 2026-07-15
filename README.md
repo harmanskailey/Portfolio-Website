@@ -1,39 +1,48 @@
-# Portfolio Website
+# Harman Kailey Portfolio
 
-Astro portfolio site with cookie-based login, middleware-protected routes, and Vercel deployment support.
+A static Astro portfolio with a concise professional overview, detailed work and
+project pages, and a separate cooking journal.
 
-## Local commands
+## Local development
 
 ```sh
 npm install
 npm run dev
-npm run build
-npm run preview
 ```
 
-## Deployment target
+The development server defaults to `http://localhost:4321`.
 
-This project uses server-side rendering because it includes:
+## Quality checks
 
-- `src/middleware.ts`
-- `src/pages/api/login.ts`
-- `src/pages/api/logout.ts`
+```sh
+npm run check
+npm run format:check
+npm run build
+```
 
-It is configured for Vercel with the official Astro adapter in `astro.config.mjs`.
+## Content structure
 
-## Deploy to Vercel
+- `src/data/site.ts` contains shared identity and contact copy.
+- `src/data/home.ts` contains impact, education, and capability summaries.
+- `src/data/work/` keeps each role or project in its own typed file. Its index is
+  the single source for homepage work cards and detailed `/work/[slug]` pages.
+- `src/data/cooking.ts` contains the cooking narrative and authored image
+  descriptions.
+- `src/assets/cooking/` contains source photos. Astro generates optimized WebP
+  output during the build.
 
-The simplest path is through the Vercel dashboard:
+To add a role or project, add one typed object under `src/data/work/` and export
+it from the directory index. The landing page and detail route are generated
+from the same object.
 
-1. Push this repository to GitHub.
-2. Import the repo into Vercel.
-3. Keep the detected build command as `npm run build`.
-4. Keep the output setting managed by Astro/Vercel.
-5. Deploy.
+Run `npm run sanitize:images` after adding JPEG photography. It applies image
+orientation, removes embedded location/EXIF data, and limits oversized source
+files before Astro creates responsive web output.
 
-Vercel should detect the Astro app automatically.
+The tracked social card is generated from `public/og-card.svg`. Run
+`npm run build:og` after changing that source artwork.
 
-## Notes
+## Deployment
 
-- The previous Firebase Hosting setup files were removed because Firebase SSR would require the Blaze plan for this app.
-- No Firebase-specific configuration is required for the current deployment target.
+The site builds to static files in `dist/` and is configured for the canonical
+domain `https://harmanskailey.com`. Any static host can serve the output.

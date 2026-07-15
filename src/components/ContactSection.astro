@@ -1,48 +1,39 @@
 ---
 import type { LinkItem, SiteContent } from "../data/portfolio";
-import SectionShell from "./SectionShell.astro";
 
 type Props = {
-  id?: string;
-  eyebrow?: string;
-  heading?: string;
-  stageLabel?: string;
   site: SiteContent;
   socialLinks: LinkItem[];
 };
 
-const {
-  id = "contact",
-  eyebrow = "Contact",
-  heading = "A simple place to reach me directly.",
-  stageLabel,
-  site,
-  socialLinks,
-} = Astro.props;
+const { site, socialLinks } = Astro.props;
 ---
 
-<SectionShell id={id} eyebrow={eyebrow} heading={heading} stageLabel={stageLabel}>
-  <div class="contact-panel glass-panel spotlight-panel">
-    <div>
-      <p class="project-card__category">Open To</p>
-      <h3>{site.availability}</h3>
-      <p>
-        The easiest way to start a conversation is email, but LinkedIn and GitHub
-        are here too if you want a broader look at the work.
-      </p>
-    </div>
-
-    <div class="contact-panel__links">
-      {socialLinks.map((link) => (
-        <a
-          class="contact-link"
-          href={link.href}
-          target={link.href.startsWith("http") ? "_blank" : undefined}
-          rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-        >
-          {link.label}
-        </a>
-      ))}
+<section id="contact" class="contact-section" aria-labelledby="contact-title">
+  <div>
+    <p class="eyebrow">Contact</p>
+    <h2 id="contact-title">
+      Let’s make the next complicated system easier to use and support.
+    </h2>
+  </div>
+  <div class="contact-section__body">
+    <p>{site.availability}</p>
+    <div class="button-row">
+      {
+        socialLinks.map((link, index) => (
+          <a
+            class:list={[
+              "button",
+              index === 0 ? "button--primary" : "button--secondary",
+            ]}
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
     </div>
   </div>
-</SectionShell>
+</section>

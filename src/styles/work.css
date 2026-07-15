@@ -1,0 +1,164 @@
+/* Work detail pages */
+
+.detail-page {
+  padding-bottom: 6rem;
+}
+
+.breadcrumb {
+  padding-top: 2.25rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li + li::before {
+  margin-right: 0.45rem;
+  color: var(--line-strong);
+  content: "/";
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--ink);
+}
+
+.breadcrumb a {
+  text-underline-offset: 0.2em;
+}
+
+.case-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.72fr);
+  gap: 3rem;
+  align-items: end;
+  padding: clamp(4rem, 9vw, 7.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.case-hero h1 {
+  max-width: 11ch;
+  margin-top: 0.75rem;
+}
+
+.case-hero__organization {
+  margin-top: 1.1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.case-hero__period {
+  margin-top: 0.25rem;
+  color: var(--muted);
+}
+
+.case-hero__summary {
+  color: var(--muted);
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(1.45rem, 2.5vw, 2rem);
+  line-height: 1.35;
+}
+
+.case-highlights {
+  padding: 2rem 0 3rem;
+  border-block: 1px solid var(--line);
+}
+
+.case-highlights h2,
+.case-aside h2 {
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.case-highlights__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.case-highlights__grid p {
+  padding: 1.4rem;
+  border-radius: var(--radius-sm);
+  background: var(--forest);
+  color: white;
+  font-size: 1.03rem;
+}
+
+.case-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.33fr);
+  gap: clamp(3rem, 8vw, 7rem);
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.case-sections {
+  display: grid;
+  gap: 3.5rem;
+}
+
+.case-sections section + section {
+  padding-top: 3.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.case-sections h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.case-section__summary {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.case-sections section > p:not(.case-section__summary) {
+  margin-top: 1rem;
+}
+
+.case-aside {
+  align-self: start;
+  position: sticky;
+  top: 7rem;
+  display: grid;
+  gap: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255, 253, 248, 0.7);
+}
+
+.case-aside .chip-list {
+  margin-top: 0.85rem;
+}
+
+.case-aside .text-link {
+  margin-top: 0.8rem;
+}
+
+.confidentiality-note {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.next-step {
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border-radius: var(--radius-lg);
+  background: var(--surface-soft);
+}
+
+.next-step h2 {
+  max-width: 15ch;
+  margin-top: 0.7rem;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
