@@ -2,22 +2,14 @@ import { defineMiddleware } from "astro:middleware";
 import {
   AUTH_COOKIE_NAME,
   getPortfolioPasscode,
+  isPublicAuthPath,
   loginLocationFor,
   noStore,
+  normalizePath,
   redirectResponse,
   sanitizeRedirect,
   verifyAccessToken,
 } from "./lib/auth";
-
-const PUBLIC_PATHS = new Set([
-  "/api/login",
-  "/api/logout",
-  "/login",
-  "/robots.txt",
-]);
-
-const normalizePath = (path: string) =>
-  path === "/" ? path : path.replace(/\/+$/, "");
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const path = normalizePath(context.url.pathname);
@@ -39,7 +31,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return noStore(await next());
   }
 
-  if (PUBLIC_PATHS.has(path)) {
+  if (isPublicAuthPath(path)) {
     const response = await next();
     return path === "/robots.txt" ? response : noStore(response);
   }
