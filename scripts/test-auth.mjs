@@ -1,11 +1,20 @@
 import { createHmac, randomBytes } from "node:crypto";
-import { access, readFile } from "node:fs/promises";
+import { access, mkdtemp, readFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { build } from "esbuild";
 
 const previousPasscode = process.env.PORTFOLIO_PASSCODE;
 const testPasscode = randomBytes(32).toString("hex");
 process.env.PORTFOLIO_PASSCODE = testPasscode;
+
+const middlewarePath = path.resolve("middleware.ts");
+const testBundleDirectory = await mkdtemp(
+  path.join(tmpdir(), "portfolio-routing-middleware-"),
+);
+const testBundlePath = path.join(testBundleDirectory, "middleware.mjs");
+let routingMiddleware;
 
 const requireCondition = (condition, message) => {
   if (!condition) throw new Error(message);
@@ -44,9 +53,17 @@ const formRequest = (origin, forwardedHost) =>
   });
 
 try {
-  const { default: routingMiddleware } = await import(
-    `${pathToFileURL(path.resolve("middleware.ts")).href}?auth-test=${Date.now()}`
-  );
+  await build({
+    entryPoints: [middlewarePath],
+    bundle: true,
+    format: "esm",
+    outfile: testBundlePath,
+    platform: "browser",
+    target: "esnext",
+  });
+  ({ default: routingMiddleware } = await import(
+    `${pathToFileURL(testBundlePath).href}?auth-test=${Date.now()}`
+  ));
 
   for (const pathname of [
     "/",
@@ -211,6 +228,7 @@ try {
     "Auth passed: native routing middleware protects pages/assets, proxied form posts preserve CSRF checks, signed cookies validate, and missing secrets fail closed.",
   );
 } finally {
+  await rm(testBundleDirectory, { recursive: true, force: true });
   if (previousPasscode === undefined) delete process.env.PORTFOLIO_PASSCODE;
   else process.env.PORTFOLIO_PASSCODE = previousPasscode;
 }
