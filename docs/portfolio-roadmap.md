@@ -71,31 +71,19 @@ engineer who is building a statistical research archive.
   (CC BY 4.0), Lucide for lightweight icons (ISC), and token-first CSS systems
   such as Open Props for design-token inspiration.
 
-## Authentication migration
+## Future private archive
 
-The current middleware protects the whole site. The next auth change should be a
-route-scope migration, not another visual redesign.
+The current portfolio is public. Add authentication only if future personal
+material genuinely requires a private boundary.
 
-- [ ] Make `/`, `/work/*`, public metadata, favicons, and the professional social
-      card unauthenticated.
-- [ ] Require a signed, expiring session only for `/personal` and
-      `/personal/*`.
-- [ ] Move `/cooking` to `/personal/cooking`; keep a temporary redirect only if
-      old links have already been shared.
-- [ ] Change successful login redirects so they remain inside `/personal`.
-- [ ] Move the logout control out of the public navigation and into the private
-      personal header.
-- [ ] Add `noindex, nofollow` to every private page and disallow `/personal/` in
-      `robots.txt`. Robots directives are not access control; middleware remains the
-      boundary.
-- [ ] Verify that private images and generated assets cannot be fetched from a
-      public static URL. If an asset must truly be private, serve it through a
-      protected route or private object store rather than `public/`.
-- [ ] Expand auth tests to cover anonymous public access, private-route denial,
-      safe redirects, cookie expiry, logout, direct private-asset access, and
-      fail-closed behavior when the secret is missing.
-- [ ] Preserve the current origin/host validation work when changing the route
-      matcher.
+- [ ] Introduce `/personal` and protected subroutes only when private content is
+      ready to publish.
+- [ ] Keep `/`, `/work/*`, professional metadata, reports, and social cards
+      public.
+- [ ] Store genuinely private images behind a protected server route or private
+      object store rather than under `public/`.
+- [ ] Add route, cookie, redirect, and asset-access tests at the same time as any
+      future authentication layer.
 
 ## Research publishing model
 

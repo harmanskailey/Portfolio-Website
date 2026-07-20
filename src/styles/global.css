@@ -262,25 +262,13 @@ h4 {
   gap: 1.45rem;
 }
 
-.site-nav a,
-.site-nav__lock button {
+.site-nav a {
   position: relative;
   padding-block: 0.55rem;
   color: var(--muted);
   font-size: 0.88rem;
   font-weight: 600;
   text-decoration: none;
-}
-
-.site-nav__lock {
-  display: inline-flex;
-}
-
-.site-nav__lock button {
-  padding-inline: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
 }
 
 .site-nav a::after {
@@ -297,8 +285,7 @@ h4 {
 }
 
 .site-nav a:hover,
-.site-nav a[aria-current="page"],
-.site-nav__lock button:hover {
+.site-nav a[aria-current="page"] {
   color: var(--ink);
 }
 
@@ -1522,8 +1509,7 @@ details > summary::marker {
     display: none;
   }
 
-  .site-nav a,
-  .site-nav__lock button {
+  .site-nav a {
     display: inline-flex;
     flex: 0 0 auto;
     min-height: 2.75rem;
