@@ -11,7 +11,7 @@
     "build:og": "node scripts/build-og-image.mjs",
     "preview": "astro preview",
     "check": "astro check",
-    "test:auth": "npm run build && node scripts/test-auth.mjs",
+    "test:auth": "npm run build && node --experimental-strip-types scripts/test-auth.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "sanitize:images": "node scripts/sanitize-images.mjs",
@@ -24,7 +24,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/vercel": "^11.0.2",
-    "esbuild": "^0.28.1",
     "prettier": "^3.9.5",
     "prettier-plugin-astro": "^0.14.1",
     "sharp": "^0.35.3",

@@ -7,53 +7,93 @@ type Props = {
 };
 
 const { items } = Astro.props;
+const researchItems = items.filter(
+  (item) => item.projectMeta?.category === "research",
+);
+const engineeringItems = items.filter(
+  (item) => item.projectMeta?.category !== "research",
+);
 ---
 
 <SectionShell
   id="projects"
-  eyebrow="Selected projects"
-  heading="Statistics, visualization, and the infrastructure behind this site."
-  intro="A small set of projects with enough substance to explain the question, method, and delivery."
+  eyebrow="Research & projects"
+  heading="Questions, methods, and artifacts, not just a gallery of cards."
+  intro="Graduate reports and interactive work are presented as a growing research shelf. Each entry records the question, analytical approach, and thing you can review."
 >
-  <div class="project-grid">
+  <div class="research-shelf">
     {
-      items.map((item) => (
-        <article
-          class:list={[
-            "project-card",
-            item.featured && "project-card--featured",
-          ]}
-        >
-          <p class="project-card__period">{item.period}</p>
-          <h3>{item.title}</h3>
-          <p>{item.summary}</p>
-          <ul class="compact-list">
-            {item.highlights.map((highlight) => (
-              <li>{highlight}</li>
-            ))}
-          </ul>
-          <div class="chip-list">
-            {item.skills.map((skill) => (
-              <span>{skill}</span>
-            ))}
+      researchItems.map((item, index) => (
+        <article class="research-card">
+          <div class="research-card__index" aria-hidden="true">
+            {String(index + 1).padStart(2, "0")}
           </div>
-          <div class="project-card__actions">
-            <a class="text-link" href={`/work/${item.slug}`}>
-              Read the {item.title} case study <span aria-hidden="true">→</span>
-            </a>
-            {item.links?.map((link) => (
-              <a
-                class="text-link text-link--muted"
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.label} <span aria-hidden="true">↗</span>
-              </a>
-            ))}
+          <div class="research-card__content">
+            <div class="research-card__meta">
+              <p>{item.projectMeta?.format}</p>
+              <p>{item.projectMeta?.deliverable}</p>
+            </div>
+            <h3>{item.title}</h3>
+            <p class="research-card__question">
+              <span>Research question</span>
+              {item.projectMeta?.question}
+            </p>
+            <p class="research-card__summary">{item.summary}</p>
+            <div class="research-card__footer">
+              <div class="chip-list" aria-label="Methods and tools">
+                {item.skills.map((skill) => (
+                  <span>{skill}</span>
+                ))}
+              </div>
+              <div class="research-card__actions">
+                {item.links?.map((link) => {
+                  const isExternal = link.href.startsWith("http");
+
+                  return (
+                    <a
+                      class="text-link"
+                      href={link.href}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noreferrer" : undefined}
+                    >
+                      {link.label}{" "}
+                      <span aria-hidden="true">{isExternal ? "↗" : "→"}</span>
+                    </a>
+                  );
+                })}
+                <a
+                  class="text-link text-link--muted"
+                  href={`/work/${item.slug}`}
+                >
+                  Read case study <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
           </div>
         </article>
       ))
     }
   </div>
+
+  {
+    engineeringItems.length > 0 && (
+      <aside class="build-note" aria-labelledby="build-note-title">
+        <div>
+          <p class="eyebrow">Publishing infrastructure</p>
+          <h3 id="build-note-title">Built to grow with the work.</h3>
+        </div>
+        {engineeringItems.map((item) => (
+          <div class="build-note__body">
+            <p>{item.projectMeta?.question}</p>
+            <div class="build-note__meta">
+              <span>{item.projectMeta?.deliverable}</span>
+              <a class="text-link" href={`/work/${item.slug}`}>
+                See how this site works <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </aside>
+    )
+  }
 </SectionShell>

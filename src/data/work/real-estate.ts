@@ -34,5 +34,12 @@ export const realEstateProject = {
       href: "https://harmanskailey.shinyapps.io/AmesHousingRevised_Final/",
     },
   ],
+  projectMeta: {
+    category: "research",
+    format: "Interactive analysis",
+    question:
+      "How do living area and year built relate to real-estate value, and how does a log transformation change that relationship?",
+    deliverable: "R Shiny dashboard",
+  },
   featured: true,
 } satisfies WorkItem;

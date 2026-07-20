@@ -1,0 +1,35 @@
+---
+import type { SourceHighlightGroup } from "../data/portfolio";
+import SectionShell from "./SectionShell.astro";
+
+type Props = {
+  groups: SourceHighlightGroup[];
+};
+
+const { groups } = Astro.props;
+---
+
+<SectionShell
+  id="source-highlights"
+  eyebrow="Source highlights"
+  heading="Resume highlights and RIT statement language."
+  intro="Direct excerpts that connect the professional record to the applied-statistics direction."
+  className="source-highlights"
+>
+  <div class="source-highlight-grid">
+    {
+      groups.map((group) => (
+        <article class="source-highlight-card">
+          <p class="source-highlight-card__source">{group.source}</p>
+          <h3>{group.title}</h3>
+          <p class="source-highlight-card__summary">{group.summary}</p>
+          <ul>
+            {group.highlights.map((highlight) => (
+              <li>{highlight}</li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</SectionShell>

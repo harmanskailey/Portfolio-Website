@@ -24,4 +24,11 @@ export const portfolioSiteProject = {
         "Builds as a static site for straightforward hosting, fast navigation, and public discoverability.",
     },
   ],
+  projectMeta: {
+    category: "engineering",
+    format: "Platform build",
+    question:
+      "How can one small publishing system support concise professional work, long-form case studies, and future research without duplicating content?",
+    deliverable: "Astro site on Vercel",
+  },
 } satisfies WorkItem;

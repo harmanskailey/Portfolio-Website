@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="180" viewBox="0 0 960 180" role="img" aria-label="Tree silhouette strip">
+  <!-- Local tree-only strip based on the CC0 tree-silhouette style from https://svgsilh.com/tag/tree-1.html -->
+  <defs>
+    <symbol id="oak" viewBox="0 0 120 180">
+      <path d="M54 180v-54c-10 4-21 4-31-1C8 118 0 104 2 88c2-17 13-28 28-31-1-16 8-29 22-35 14-6 31-2 41 10 12 1 22 8 27 19 6 13 3 27-7 37 8 9 9 22 3 32-8 14-26 20-43 13v47H54Z" />
+    </symbol>
+    <symbol id="pine" viewBox="0 0 92 180">
+      <path d="M41 180v-35H16l20-30H20l19-29H25l18-28H30L46 26l16 32H49l18 28H53l19 29H56l20 30H51v35H41Z" />
+    </symbol>
+    <symbol id="willow" viewBox="0 0 130 180">
+      <path d="M60 180v-44c-22 7-44-1-54-18-10-17-6-39 9-52-4-16 4-31 18-39 13-8 31-6 42 5 12-10 30-10 43 0 14 11 18 31 9 47 10 14 8 33-5 45-12 13-31 17-48 11v45H60Z" />
+    </symbol>
+    <symbol id="cedar" viewBox="0 0 96 180">
+      <path d="M43 180v-31H12l27-22H20l23-21H25l22-20H31l18-21H36l12-24 13 24H49l18 21H51l22 20H55l23 21H59l27 22H53v31H43Z" />
+    </symbol>
+  </defs>
+  <g fill="#164231">
+    <use href="#oak" x="-12" y="0" width="120" height="180" opacity=".18" />
+    <use href="#pine" x="70" y="2" width="92" height="180" opacity=".22" />
+    <use href="#willow" x="128" y="8" width="130" height="180" opacity=".18" />
+    <use href="#cedar" x="238" y="-2" width="96" height="180" opacity=".24" />
+    <use href="#oak" x="300" y="4" width="120" height="180" opacity=".2" />
+    <use href="#pine" x="392" y="-4" width="92" height="180" opacity=".24" />
+    <use href="#willow" x="448" y="10" width="130" height="180" opacity=".19" />
+    <use href="#cedar" x="560" y="4" width="96" height="180" opacity=".24" />
+    <use href="#oak" x="620" y="-1" width="120" height="180" opacity=".19" />
+    <use href="#pine" x="718" y="6" width="92" height="180" opacity=".23" />
+    <use href="#willow" x="776" y="0" width="130" height="180" opacity=".18" />
+    <use href="#cedar" x="890" y="3" width="96" height="180" opacity=".24" />
+  </g>
+  <g fill="#164231">
+    <use href="#pine" x="18" y="22" width="92" height="180" opacity=".3" />
+    <use href="#cedar" x="94" y="18" width="96" height="180" opacity=".34" />
+    <use href="#oak" x="160" y="24" width="120" height="180" opacity=".28" />
+    <use href="#pine" x="270" y="17" width="92" height="180" opacity=".32" />
+    <use href="#willow" x="338" y="20" width="130" height="180" opacity=".29" />
+    <use href="#cedar" x="454" y="23" width="96" height="180" opacity=".34" />
+    <use href="#oak" x="516" y="18" width="120" height="180" opacity=".28" />
+    <use href="#pine" x="626" y="20" width="92" height="180" opacity=".32" />
+    <use href="#willow" x="688" y="24" width="130" height="180" opacity=".29" />
+    <use href="#cedar" x="804" y="16" width="96" height="180" opacity=".34" />
+    <use href="#oak" x="870" y="24" width="120" height="180" opacity=".28" />
+  </g>
+</svg>

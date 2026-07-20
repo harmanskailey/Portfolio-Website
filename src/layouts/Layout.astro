@@ -50,7 +50,7 @@ const personSchema = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f4f2ec" />
+    <meta name="theme-color" content="#f4f1e7" />
     <meta name="generator" content={Astro.generator} />
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
@@ -64,7 +64,7 @@ const personSchema = {
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content={`${site.name} — Software engineer portfolio`}
+      content={`${site.name} - Software engineer portfolio`}
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
@@ -72,7 +72,7 @@ const personSchema = {
     <meta name="twitter:image" content={previewImage} />
     <meta
       name="twitter:image:alt"
-      content={`${site.name} — Software engineer portfolio`}
+      content={`${site.name} - Software engineer portfolio`}
     />
     <title>{pageTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=hk-3" />
@@ -96,7 +96,7 @@ const personSchema = {
       <SiteHeader />
       <slot />
       <footer class="site-footer">
-        <p>© {new Date().getFullYear()} {site.name}</p>
+        <p>&copy; {new Date().getFullYear()} {site.name}</p>
         <nav aria-label="Social links">
           {
             socialLinks.map((link) => (

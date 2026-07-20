@@ -7,6 +7,10 @@ const item = workItems.find(({ slug }) => slug === Astro.params.slug);
 if (!item) return Astro.rewrite("/404");
 const eyebrow =
   item.kind === "experience" ? "Professional experience" : "Project case study";
+const reportSrc = item.reportEmbed
+  ? `${item.reportEmbed.href}#toolbar=1&navpanes=0`
+  : undefined;
+const showCaseAside = !item.reportEmbed;
 ---
 
 <Layout title={item.title} description={item.summary}>
@@ -45,7 +49,9 @@ const eyebrow =
         </div>
       </section>
 
-      <div class="case-layout">
+      <div
+        class:list={["case-layout", item.reportEmbed && "case-layout--report"]}
+      >
         <div class="case-sections">
           {
             item.sections.map((section) => (
@@ -67,38 +73,87 @@ const eyebrow =
               </section>
             ))
           }
-        </div>
-
-        <aside class="case-aside">
-          <div>
-            <h2>Tools and focus</h2>
-            <div class="chip-list chip-list--strong">
-              {item.skills.map((skill) => <span>{skill}</span>)}
-            </div>
-          </div>
           {
-            item.links && (
-              <div>
-                <h2>Links</h2>
-                {item.links.map((link) => (
+            item.reportEmbed && (
+              <section
+                id="report-viewer"
+                class="report-viewer"
+                aria-labelledby="report-viewer-title"
+              >
+                <div class="report-viewer__header">
+                  <div>
+                    <p class="eyebrow">Embedded report</p>
+                    <h2 id="report-viewer-title">{item.reportEmbed.title}</h2>
+                    {item.reportEmbed.summary && (
+                      <p class="case-section__summary">
+                        {item.reportEmbed.summary}
+                      </p>
+                    )}
+                  </div>
                   <a
-                    class="text-link"
-                    href={link.href}
+                    class="button button--secondary"
+                    href={item.reportEmbed.href}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {link.label} <span aria-hidden="true">↗</span>
+                    {item.reportEmbed.fallbackLabel ?? "Open PDF"}
                   </a>
-                ))}
+                </div>
+                <object
+                  class="report-viewer__frame"
+                  data={reportSrc}
+                  type="application/pdf"
+                  aria-label={item.reportEmbed.title}
+                >
+                  <p>
+                    This browser cannot display the PDF inline.{" "}
+                    <a href={item.reportEmbed.href}>
+                      {item.reportEmbed.fallbackLabel ?? "Open the PDF"}
+                    </a>
+                    .
+                  </p>
+                </object>
+              </section>
+            )
+          }
+        </div>
+
+        {
+          showCaseAside && (
+            <aside class="case-aside">
+              <div>
+                <h2>Tools and focus</h2>
+                <div class="chip-list chip-list--strong">
+                  {item.skills.map((skill) => (
+                    <span>{skill}</span>
+                  ))}
+                </div>
               </div>
-            )
-          }
-          {
-            item.confidentialityNote && (
-              <p class="confidentiality-note">{item.confidentialityNote}</p>
-            )
-          }
-        </aside>
+              {item.links && (
+                <div>
+                  <h2>Links</h2>
+                  {item.links.map((link) => (
+                    <a
+                      class="text-link"
+                      href={link.href}
+                      target={
+                        link.href.startsWith("http") ? "_blank" : undefined
+                      }
+                      rel={
+                        link.href.startsWith("http") ? "noreferrer" : undefined
+                      }
+                    >
+                      {link.label} <span aria-hidden="true">&rarr;</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+              {item.confidentialityNote && (
+                <p class="confidentiality-note">{item.confidentialityNote}</p>
+              )}
+            </aside>
+          )
+        }
       </div>
     </article>
 

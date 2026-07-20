@@ -15,31 +15,17 @@ import cooking14 from "../assets/cooking/14.jpeg";
 import type { CookingContent } from "./types";
 
 export const cooking: CookingContent = {
-  eyebrow: "Beyond work · Cooking from scratch",
-  title: "Traveling through flavor, one crowded stovetop at a time.",
+  eyebrow: "The food that fuels the work.",
+  title: "My favorite escape from screens.",
   summary:
-    "Cooking is where I trade tickets and terminals for cast iron, a mortar and pestle, and a lot of tasting as I go.",
-  philosophy:
-    "I gravitate toward Southeast Asian flavor palettes—ginger, garlic, lime, chile, herbs, and a little sweetness—while learning the fundamentals behind a good sear, a balanced sauce, and an efficient kitchen.",
-  themes: [
-    {
-      title: "Bold, balanced flavor",
-      text: "Acid, heat, sweetness, aromatics, and texture should each have a reason to be on the plate.",
-    },
-    {
-      title: "Rustic tools",
-      text: "Cast iron, Dutch ovens, and a mortar and pestle keep the process tactile and forgiving.",
-    },
-    {
-      title: "Iterative process",
-      text: "Every dish is a small experiment: taste, adjust, take notes, and make the next version better.",
-    },
-  ],
+    "Cooking is where I trade the keyboard for cast iron, a mortar and pestle, and a lot of tasting as I go. I gravitate toward Southeast Asian flavors—ginger, garlic, lime, chili, fresh herbs, and a little sweetness. Recipes give me a framework, but heat, texture, and instinct decide where the dish ends up.",
+  philosophy: "",
+  themes: [],
   images: [
     {
       src: cooking03,
       alt: "Tall sesame-roll sandwich layered with sliced deli meat, cheese, tomato, arugula, and dark sauce on a white plate.",
-      caption: "A generously stacked lunch.",
+      caption: "A generously stacked lunch.d",
       group: "featured",
     },
     {
@@ -74,9 +60,9 @@ export const cooking: CookingContent = {
     },
     {
       src: cooking13,
-      alt: "Rice noodles topped with browned ground meat, green chiles, scallions, cabbage, and orange pepper strips.",
+      alt: "Rice noodles topped with browned ground meat, green chilis, scallions, cabbage, and orange pepper strips.",
       caption:
-        "Rice noodles with savory meat, fresh chiles, and crunchy vegetables.",
+        "Rice noodles with savory meat, fresh chilis, and crunchy vegetables.",
       group: "gallery",
     },
     {
@@ -105,14 +91,14 @@ export const cooking: CookingContent = {
     },
     {
       src: cooking07,
-      alt: "A fish fillet cooking in a cast-iron skillet beneath lemon slices, green chiles, and black pepper.",
-      caption: "Citrus and chile layered over fish in the skillet.",
+      alt: "A fish fillet cooking in a cast-iron skillet beneath lemon slices, green chilis, and black pepper.",
+      caption: "Citrus and chili layered over fish in the skillet.",
       group: "process",
     },
     {
       src: cooking11,
-      alt: "A browned salmon fillet in broth with noodles and sliced green chiles in a white bowl.",
-      caption: "Salmon and noodles with a fresh chile finish.",
+      alt: "A browned salmon fillet in broth with noodles and sliced green chilis in a white bowl.",
+      caption: "Salmon and noodles with a fresh chili finish.",
       group: "process",
     },
     {

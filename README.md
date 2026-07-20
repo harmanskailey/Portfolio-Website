@@ -38,17 +38,35 @@ the real passcode.
 ## Content structure
 
 - `src/data/site.ts` contains shared identity and contact copy.
-- `src/data/home.ts` contains impact, education, and capability summaries.
+- `src/data/home.ts` contains the three homepage focus areas, source
+  highlights, impact, education, and capability summaries.
 - `src/data/work/` keeps each role or project in its own typed file. Its index is
   the single source for homepage work cards and detailed `/work/[slug]` pages.
 - `src/data/cooking.ts` contains the cooking narrative and authored image
   descriptions.
 - `src/assets/cooking/` contains source photos. Astro generates optimized WebP
   output during the build.
+- `public/reports/` contains public PDF report artifacts, such as
+  `/reports/global-music-visualization.pdf`.
 
 To add a role or project, add one typed object under `src/data/work/` and export
 it from the directory index. The landing page and detail route are generated
-from the same object.
+from the same object. Research projects use the optional `projectMeta` block to
+record their question, format, and reviewable deliverable.
+
+To publish a PDF report, place it under `public/reports/` with a stable,
+URL-safe filename, then add a `links` entry to the matching project data file.
+The Global Music Visualization project expects
+`public/reports/global-music-visualization.pdf`.
+For reports that should render inside the site, add a `reportEmbed` object to the
+matching work item and point the regular project link to the case-study anchor,
+for example `/work/global-music-visualization#report-viewer`.
+
+The phased public/private split, authentication migration, and research
+publishing backlog live in [`docs/portfolio-roadmap.md`](docs/portfolio-roadmap.md).
+The same roadmap records the active Forest Ledger visual theme, palette roles,
+CSS tree/wood texture choices, and open-source design options reviewed for
+future texture or icon work.
 
 Run `npm run sanitize:images` after adding JPEG photography. It applies image
 orientation, removes embedded location/EXIF data, and limits oversized source

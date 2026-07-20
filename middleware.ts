@@ -9,7 +9,7 @@ import {
   redirectResponse,
   sanitizeRedirect,
   verifyAccessToken,
-} from "./src/lib/auth-core";
+} from "./src/lib/auth-core.ts";
 
 const NO_STORE_HEADERS = {
   "Cache-Control": "private, no-store, max-age=0",

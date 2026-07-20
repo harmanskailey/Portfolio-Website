@@ -1,20 +1,35 @@
 ---
-import type { CapabilityGroup, EducationItem } from "../data/portfolio";
+import type {
+  CapabilityGroup,
+  EducationItem,
+  ProfileNarrative,
+} from "../data/portfolio";
 import SectionShell from "./SectionShell.astro";
 
 type Props = {
   education: EducationItem[];
   capabilities: CapabilityGroup[];
+  narrative: ProfileNarrative;
 };
 
-const { education, capabilities } = Astro.props;
+const { education, capabilities, narrative } = Astro.props;
 ---
 
 <SectionShell
   id="background"
   eyebrow="Background"
-  heading="Engineering foundations, statistical study, and practical delivery tools."
+  heading="A technical practice grounded in systems thinking and statistical reasoning."
 >
+  <article class="background-story">
+    <div>
+      <p class="eyebrow">{narrative.eyebrow}</p>
+      <h3>{narrative.heading}</h3>
+    </div>
+    <div class="background-story__body">
+      {narrative.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </article>
+
   <div class="background-grid">
     <div class="education-list">
       <h3>Education</h3>
