@@ -1,20 +1,11 @@
 import { createHmac, randomBytes } from "node:crypto";
-import { access, mkdtemp, readFile, rm } from "node:fs/promises";
-import { tmpdir } from "node:os";
+import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { build } from "esbuild";
 
 const previousPasscode = process.env.PORTFOLIO_PASSCODE;
 const testPasscode = randomBytes(32).toString("hex");
 process.env.PORTFOLIO_PASSCODE = testPasscode;
-
-const middlewarePath = path.resolve("middleware.ts");
-const testBundleDirectory = await mkdtemp(
-  path.join(tmpdir(), "portfolio-routing-middleware-"),
-);
-const testBundlePath = path.join(testBundleDirectory, "middleware.mjs");
-let routingMiddleware;
 
 const requireCondition = (condition, message) => {
   if (!condition) throw new Error(message);
@@ -37,18 +28,25 @@ const request = (pathname, token, method = "GET") =>
 const isNextResponse = (response) =>
   response.headers.get("x-middleware-next") === "1";
 
-try {
-  await build({
-    entryPoints: [middlewarePath],
-    bundle: true,
-    format: "esm",
-    outfile: testBundlePath,
-    platform: "browser",
-    target: "esnext",
+const formRequest = (origin, forwardedHost) =>
+  new Request("https://portfolio-internal.vercel.app/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Origin: origin,
+      "X-Forwarded-Host": forwardedHost,
+      "X-Forwarded-Proto": "https",
+    },
+    body: new URLSearchParams({
+      passcode: testPasscode,
+      redirect: "/",
+    }),
   });
-  ({ default: routingMiddleware } = await import(
-    `${pathToFileURL(testBundlePath).href}?auth-test=${Date.now()}`
-  ));
+
+try {
+  const { default: routingMiddleware } = await import(
+    `${pathToFileURL(path.resolve("middleware.ts")).href}?auth-test=${Date.now()}`
+  );
 
   for (const pathname of [
     "/",
@@ -152,6 +150,7 @@ try {
     missingSecretResponse.status === 307,
     "Routing middleware did not fail closed without its secret",
   );
+  process.env.PORTFOLIO_PASSCODE = testPasscode;
 
   const vercelConfig = JSON.parse(
     await readFile(".vercel/output/config.json", "utf8"),
@@ -174,11 +173,44 @@ try {
     "Astro still generated a self-fetching edge middleware function",
   );
 
+  const { default: astroApp } = await import(
+    `${pathToFileURL(path.resolve(".vercel/output/_functions/entry.mjs")).href}?auth-test=${Date.now()}`
+  );
+  const forwardedLogin = await astroApp.fetch(
+    formRequest("https://www.harmanskailey.com", "www.harmanskailey.com"),
+  );
+  requireCondition(
+    forwardedLogin.status === 303,
+    `A valid proxied login was rejected with ${forwardedLogin.status}`,
+  );
+  requireCondition(
+    forwardedLogin.headers.get("location") === "/",
+    "A valid proxied login did not return to the requested page",
+  );
+
+  const previewLogin = await astroApp.fetch(
+    formRequest(
+      "https://portfolio-preview-harman.vercel.app",
+      "portfolio-preview-harman.vercel.app",
+    ),
+  );
+  requireCondition(
+    previewLogin.status === 303,
+    `A valid Vercel preview login was rejected with ${previewLogin.status}`,
+  );
+
+  const forgedLogin = await astroApp.fetch(
+    formRequest("https://attacker.example", "attacker.example"),
+  );
+  requireCondition(
+    forgedLogin.status === 403,
+    "An untrusted forwarded host bypassed Astro's origin check",
+  );
+
   console.log(
-    "Auth passed: native routing middleware protects pages/assets, continues without self-fetching, validates signed cookies, and fails closed.",
+    "Auth passed: native routing middleware protects pages/assets, proxied form posts preserve CSRF checks, signed cookies validate, and missing secrets fail closed.",
   );
 } finally {
-  await rm(testBundleDirectory, { recursive: true, force: true });
   if (previousPasscode === undefined) delete process.env.PORTFOLIO_PASSCODE;
   else process.env.PORTFOLIO_PASSCODE = previousPasscode;
 }

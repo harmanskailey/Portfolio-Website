@@ -6,11 +6,11 @@ export const bessemerExperience = {
   title: "Application Support Analyst",
   organization: "Bessemer Trust",
   location: "Woodbridge, New Jersey",
-  period: "October 2021 – September 2022",
+  period: "October 2021 - September 2022",
   summary:
     "Supported production applications and data workflows in a live trading environment.",
   highlights: [
-    "Executed SQL and PL/SQL fixes in an Oracle production database to reconcile synchronization defects.",
+    "Wrote and executed SQL and PL/SQL corrections in a production Oracle database to resolve synchronization defects and preserve data integrity in a trading environment.",
     "Maintained intraday ETL pipelines and partnered with developers to diagnose and recover production processing failures.",
   ],
   skills: ["SQL", "PL/SQL", "Oracle Database", "ETL", "Production support"],

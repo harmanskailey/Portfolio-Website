@@ -17,13 +17,13 @@ const { site, impactItems } = Astro.props;
     <h1 id="hero-title">{site.headline}</h1>
     <p class="hero__intro">{site.intro}</p>
     <div class="button-row">
-      <a class="button button--primary" href="#experience">Explore my work</a>
-      <a class="button button--secondary" href={`mailto:${site.email}`}
-        >Get in touch</a
+      <a class="button button--primary" href="#projects">View applied stats</a>
+      <a class="button button--secondary" href="#experience"
+        >See work experience</a
       >
     </div>
     <p class="hero__location">
-      {site.location} · Applied Statistics M.S. candidate
+      {site.location} &middot; Software Engineer at RIT &middot; M.S. candidate
     </p>
   </div>
 
@@ -41,8 +41,8 @@ const { site, impactItems } = Astro.props;
       fetchpriority="high"
     />
     <figcaption>
-      <span>{site.name}</span>
-      <span>Software engineer</span>
+      <span>{site.name} + Cooper</span>
+      <span>Engineer &amp; analyst</span>
     </figcaption>
   </figure>
 

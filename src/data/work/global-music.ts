@@ -10,19 +10,29 @@ export const globalMusicProject = {
   highlights: [
     "Analyzed regional tonal patterns with R and ggplot2.",
     "Published the findings as a reproducible Quarto report.",
+    "Hosted the PDF report as a stable public artifact for review.",
   ],
   skills: ["R", "Quarto", "ggplot2", "Reproducible reporting"],
-  sections: [
+  sections: [],
+  links: [
     {
-      heading: "Visual analysis",
-      summary:
-        "Used visualization to compare tonal patterns across regions in a global music dataset.",
-    },
-    {
-      heading: "Reproducible communication",
-      summary:
-        "Combined code, interpretation, and output in a Quarto report so the analysis could be rerun and reviewed.",
+      label: "Read the embedded report",
+      href: "/work/global-music-visualization#report-viewer",
     },
   ],
+  reportEmbed: {
+    title: "Global Music Visualization PDF report",
+    href: "/reports/global-music-visualization.pdf",
+    summary:
+      "Read the rendered Quarto report directly on this page. The PDF remains available as a stable artifact for citation, sharing, and review.",
+    fallbackLabel: "Open the PDF directly",
+  },
+  projectMeta: {
+    category: "research",
+    format: "Reproducible report",
+    question:
+      "What regional tonal patterns become visible when a global music dataset is compared through a consistent visual framework?",
+    deliverable: "Quarto report",
+  },
   featured: true,
 } satisfies WorkItem;

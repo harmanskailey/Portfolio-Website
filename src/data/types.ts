@@ -22,11 +22,34 @@ export type ImpactItem = {
   description: string;
 };
 
+export type FocusArea = {
+  slug: "applied-stats" | "work-experience" | "personal";
+  kicker: string;
+  title: string;
+  summary: string;
+  details: string[];
+  href: string;
+};
+
+export type SourceHighlightGroup = {
+  source: string;
+  title: string;
+  summary: string;
+  highlights: string[];
+};
+
 export type DetailSection = {
   heading: string;
   summary?: string;
   paragraphs?: string[];
   bullets?: string[];
+};
+
+export type EmbeddedReport = {
+  title: string;
+  href: string;
+  summary?: string;
+  fallbackLabel?: string;
 };
 
 export type WorkItem = {
@@ -41,9 +64,16 @@ export type WorkItem = {
   skills: string[];
   sections: DetailSection[];
   links?: LinkItem[];
+  reportEmbed?: EmbeddedReport;
   featured?: boolean;
   earlier?: boolean;
   confidentialityNote?: string;
+  projectMeta?: {
+    category: "research" | "engineering";
+    format: string;
+    question: string;
+    deliverable: string;
+  };
 };
 
 export type EducationItem = {
@@ -58,6 +88,19 @@ export type CapabilityGroup = {
   summary: string;
   primary: string[];
   supporting: string[];
+};
+
+export type ProfileNarrative = {
+  eyebrow: string;
+  heading: string;
+  paragraphs: string[];
+};
+
+export type ResearchDirection = {
+  stage: string;
+  title: string;
+  summary: string;
+  questions: string[];
 };
 
 export type CookingImage = {

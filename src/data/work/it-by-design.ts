@@ -5,7 +5,7 @@ export const itByDesignExperience = {
   kind: "experience",
   title: "Software Engineer Intern",
   organization: "IT By Design",
-  period: "December 2018 – October 2020",
+  period: "December 2018 - October 2020",
   summary:
     "Maintained client-facing web experiences, customized CMS workflows, and supported data-driven requests in production environments.",
   highlights: [

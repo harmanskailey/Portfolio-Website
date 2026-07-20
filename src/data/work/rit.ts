@@ -6,12 +6,13 @@ export const ritExperience = {
   title: "Software Engineer I",
   organization: "Rochester Institute of Technology",
   location: "Rochester, New York (Remote)",
-  period: "September 2022 – Present",
+  period: "September 2022 - Present",
   summary:
-    "Build and support enterprise identity integrations and operational tools connecting RIT’s in-house IAM platform with campus systems.",
+    "Build and support enterprise identity integrations and operational tools connecting RIT's in-house IAM platform with campus systems.",
   highlights: [
-    "Designed and supported integrations between the IAM platform and 8+ enterprise applications using JSON- and XML-based interfaces.",
-    "Automated the campus ID-photo workflow, eliminating manual data-entry errors and saving hundreds of staff hours to date.",
+    "Designed and supported IAM integrations with 8+ enterprise applications using JSON, XML, and REST APIs across mobile credentials, email marketing, access management, and collaboration services.",
+    "Built a PHP MVC portal for user credential management and administrator support, reducing ID Card Office workload through access rules that hid revoked credentials and prevented reactivation.",
+    "Automated ID photo ingestion and processing for Apple Wallet, adding black padding to reduce false positives in vendor face detection and saving the ID Card Office hundreds of staff hours.",
   ],
   skills: ["PHP", "SQL", "IAM", "REST APIs", "JSON", "XML", "Kubernetes"],
   sections: [
@@ -22,7 +23,7 @@ export const ritExperience = {
       bullets: [
         "Extended backend services and database schemas to retain credential metadata and preserve change history.",
         "Automated license deprovisioning from offboarding events, strengthening compliance and reclaiming unused licenses.",
-        "Worked with application teams to translate access requirements into role- and attribute-based controls.",
+        "Wrote integration tests with cURL to compare feed inputs and API responses against expected payloads, using representative JSON when vendor testing was unavailable.",
       ],
     },
     {

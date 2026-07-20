@@ -3,17 +3,24 @@ import BackgroundSection from "../components/BackgroundSection.astro";
 import ContactSection from "../components/ContactSection.astro";
 import CookingTeaser from "../components/CookingTeaser.astro";
 import ExperienceSection from "../components/ExperienceSection.astro";
+import FocusSection from "../components/FocusSection.astro";
 import HeroSection from "../components/HeroSection.astro";
 import ProjectsSection from "../components/ProjectsSection.astro";
+import ResearchAgendaSection from "../components/ResearchAgendaSection.astro";
+import SourceHighlightsSection from "../components/SourceHighlightsSection.astro";
 import {
   capabilityGroups,
   cooking,
   education,
   experienceItems,
+  focusAreas,
   impactItems,
+  profileNarrative,
   projectItems,
+  researchDirections,
   site,
   socialLinks,
+  sourceHighlights,
 } from "../data/portfolio";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -21,9 +28,16 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <main id="main-content" class="page-main">
     <HeroSection site={site} impactItems={impactItems} />
+    <FocusSection items={focusAreas} />
+    <SourceHighlightsSection groups={sourceHighlights} />
     <ExperienceSection items={experienceItems} />
     <ProjectsSection items={projectItems} />
-    <BackgroundSection education={education} capabilities={capabilityGroups} />
+    <ResearchAgendaSection items={researchDirections} />
+    <BackgroundSection
+      education={education}
+      capabilities={capabilityGroups}
+      narrative={profileNarrative}
+    />
     <CookingTeaser content={cooking} />
     <ContactSection site={site} socialLinks={socialLinks} />
   </main>

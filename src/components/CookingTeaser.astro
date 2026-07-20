@@ -11,16 +11,25 @@ const image =
   content.images.find((item) => item.group === "featured") ?? content.images[0];
 ---
 
-<section class="cooking-teaser" aria-labelledby="cooking-teaser-title">
+<section
+  id="personal"
+  class="cooking-teaser"
+  aria-labelledby="cooking-teaser-title"
+>
   <div class="cooking-teaser__copy">
-    <p class="eyebrow">Beyond work</p>
-    <h2 id="cooking-teaser-title">
-      The kitchen is where I iterate without a deployment checklist.
-    </h2>
-    <p>{content.summary}</p>
+    <p class="eyebrow">Personal archive</p>
+    <h2 id="cooking-teaser-title">Work is only one part of the story.</h2>
+    <p>
+      The personal side starts with a cooking journal and will grow to include
+      Cooper, recipes, and the quieter projects that do not belong on a resume.
+    </p>
     <a class="button button--secondary" href="/cooking"
       >Explore the cooking journal</a
     >
+    <p class="personal-roadmap">
+      <span>Next collection</span>
+      Cooper &middot; walks, field notes, and an unreasonable number of photos
+    </p>
   </div>
   <figure>
     <Image
@@ -34,6 +43,5 @@ const image =
       format="webp"
       loading="lazy"
     />
-    <figcaption>{image.caption}</figcaption>
   </figure>
 </section>

@@ -38,7 +38,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.72fr);
   gap: 3rem;
   align-items: end;
-  padding: clamp(4rem, 9vw, 7.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
+  padding: 5rem 0 4.5rem;
 }
 
 .case-hero h1 {
@@ -60,7 +60,7 @@
 .case-hero__summary {
   color: var(--muted);
   font-family: "Newsreader", Georgia, serif;
-  font-size: clamp(1.45rem, 2.5vw, 2rem);
+  font-size: 1.65rem;
   line-height: 1.35;
 }
 
@@ -96,8 +96,13 @@
 .case-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.33fr);
-  gap: clamp(3rem, 8vw, 7rem);
-  padding: clamp(4rem, 8vw, 7rem) 0;
+  gap: 5rem;
+  padding: 5rem 0;
+}
+
+.case-layout--report {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
 }
 
 .case-sections {
@@ -111,7 +116,7 @@
 }
 
 .case-sections h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: 2.55rem;
 }
 
 .case-section__summary {
@@ -122,6 +127,44 @@
 
 .case-sections section > p:not(.case-section__summary) {
   margin-top: 1rem;
+}
+
+.report-viewer {
+  scroll-margin-top: 7rem;
+}
+
+.report-viewer__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem 2rem;
+  align-items: end;
+}
+
+.report-viewer__header .button {
+  margin-bottom: 0.2rem;
+  white-space: nowrap;
+}
+
+.report-viewer__frame {
+  display: block;
+  width: 100%;
+  height: min(84vh, 70rem);
+  min-height: 46rem;
+  margin-top: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--woodgrain), var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.report-viewer__frame p {
+  padding: 2rem;
+  color: var(--muted);
+}
+
+.report-viewer__frame a {
+  color: var(--accent-dark);
+  font-weight: 700;
 }
 
 .case-aside {
@@ -152,7 +195,7 @@
 }
 
 .next-step {
-  padding: clamp(2rem, 5vw, 3.5rem);
+  padding: 2.5rem;
   border-radius: var(--radius-lg);
   background: var(--surface-soft);
 }
@@ -160,5 +203,43 @@
 .next-step h2 {
   max-width: 15ch;
   margin-top: 0.7rem;
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: 2.8rem;
+}
+
+@media (max-width: 720px) {
+  .case-hero {
+    padding: 3.5rem 0;
+  }
+
+  .case-hero__summary {
+    font-size: 1.35rem;
+  }
+
+  .case-layout {
+    gap: 3rem;
+    padding: 4rem 0;
+  }
+
+  .case-layout--report {
+    gap: 0;
+  }
+
+  .case-sections h2,
+  .next-step h2 {
+    font-size: 2.25rem;
+  }
+
+  .report-viewer__header {
+    grid-template-columns: 1fr;
+  }
+
+  .report-viewer__header .button {
+    justify-self: start;
+    white-space: normal;
+  }
+
+  .report-viewer__frame {
+    height: 70vh;
+    min-height: 32rem;
+  }
 }
