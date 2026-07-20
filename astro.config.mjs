@@ -31,8 +31,6 @@ const allowedHostnames = new Set([
   "www.harmanskailey.com",
   "**.vercel.app",
 ]);
-const isProductionBuild = process.env.NODE_ENV === "production";
-
 for (const hostname of [
   vercelHostname(process.env.VERCEL_URL),
   vercelHostname(process.env.VERCEL_BRANCH_URL),
@@ -45,7 +43,10 @@ export default defineConfig({
   output: "server",
   adapter: vercel(),
   security: {
-    checkOrigin: isProductionBuild,
+    // Vercel may invoke the SSR function on an internal deployment URL while
+    // the browser sends the custom-domain Origin. The form endpoints perform
+    // an explicit deployment-aware origin check instead.
+    checkOrigin: false,
     allowedDomains: [...allowedHostnames].map((hostname) => ({
       protocol: "https",
       hostname,

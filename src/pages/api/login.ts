@@ -3,7 +3,9 @@ import {
   AUTH_COOKIE_NAME,
   accessCookieOptions,
   createAccessToken,
+  crossSiteFormResponse,
   getPortfolioPasscode,
+  isTrustedFormOrigin,
   passcodesMatch,
   redirectResponse,
   sanitizeRedirect,
@@ -19,6 +21,10 @@ const invalidLoginLocation = (redirectTo: string) => {
 };
 
 export const POST: APIRoute = async ({ request, cookies, url }) => {
+  if (!isTrustedFormOrigin(request)) {
+    return crossSiteFormResponse(request.method);
+  }
+
   const redirectTo = sanitizeRedirect(
     new URL(request.url).searchParams.get("redirect"),
     url.origin,

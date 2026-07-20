@@ -6,8 +6,10 @@ import { pathToFileURL } from "node:url";
 import { build } from "esbuild";
 
 const previousPasscode = process.env.PORTFOLIO_PASSCODE;
+const previousVercelUrl = process.env.VERCEL_URL;
 const testPasscode = randomBytes(32).toString("hex");
 process.env.PORTFOLIO_PASSCODE = testPasscode;
+process.env.VERCEL_URL = "portfolio-preview-harman.vercel.app";
 
 const middlewarePath = path.resolve("middleware.ts");
 const testBundleDirectory = await mkdtemp(
@@ -231,4 +233,6 @@ try {
   await rm(testBundleDirectory, { recursive: true, force: true });
   if (previousPasscode === undefined) delete process.env.PORTFOLIO_PASSCODE;
   else process.env.PORTFOLIO_PASSCODE = previousPasscode;
+  if (previousVercelUrl === undefined) delete process.env.VERCEL_URL;
+  else process.env.VERCEL_URL = previousVercelUrl;
 }
