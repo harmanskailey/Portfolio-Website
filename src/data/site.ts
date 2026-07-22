@@ -9,7 +9,7 @@ export const site: SiteContent = {
   email: "harmanskailey@gmail.com",
   location: "New Jersey, USA",
   availability:
-    "Open to software engineering opportunities and thoughtful technical collaborations.",
+    "Open to software engineering opportunities and thoughtful collaborations.",
   description:
     "Harman Kailey is a software engineer and Applied Statistics M.S. candidate working across enterprise identity, production systems, and reproducible analysis.",
 };
