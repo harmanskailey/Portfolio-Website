@@ -15,6 +15,9 @@ node_modules/
 .firebase-config/
 skills-lock.json
 
+# standalone repositories
+/projects/nhtsa-fars-shiny/
+
 # logs
 npm-debug.log*
 firebase-debug.log*

@@ -41,5 +41,5 @@ export const realEstateProject = {
       "How do living area and year built relate to real-estate value, and how does a log transformation change that relationship?",
     deliverable: "R Shiny dashboard",
   },
-  featured: true,
+  featured: false,
 } satisfies WorkItem;
