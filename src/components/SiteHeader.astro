@@ -5,10 +5,10 @@ const normalizePath = (path: string) =>
   path === "/" ? path : path.replace(/\/+$/, "");
 const currentPath = normalizePath(Astro.url.pathname);
 const navItems = [
-  { label: "Applied Stats", href: "/#projects" },
   { label: "Work", href: "/#experience" },
-  { label: "Personal", href: "/#personal" },
+  { label: "Applied Stats", href: "/#projects" },
   { label: "About", href: "/#background" },
+  { label: "Personal", href: "/#personal" },
   { label: "Contact", href: "/#contact" },
 ];
 ---
